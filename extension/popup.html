@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meet Attendance Tracker</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-title">
+        <svg class="logo" width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <rect width="24" height="24" rx="6" fill="#1a73e8"/>
+          <path d="M7 12.5l3 3 7-7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h1>Meet Attendance</h1>
+      </div>
+      <div class="status-badge" id="statusBadge">Inactive</div>
+    </header>
+
+    <!-- Master On/Off Toggle -->
+    <div class="toggle-section">
+      <div class="toggle-row">
+        <div class="toggle-label">
+          <span class="toggle-title">Attendance Tracking</span>
+          <span class="toggle-desc" id="toggleDesc">Auto-track when you join a Meet</span>
+        </div>
+        <label class="switch">
+          <input type="checkbox" id="masterToggle" checked>
+          <span class="slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls">
+      <button id="btnStart" class="btn btn-primary">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+        Start
+      </button>
+      <button id="btnStop" class="btn btn-danger" disabled>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="4" width="16" height="16" rx="2"/></svg>
+        Stop
+      </button>
+      <button id="btnExport" class="btn btn-success">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        CSV
+      </button>
+      <button id="btnExportXLSX" class="btn btn-blue">XLSX</button>
+      <button id="btnExportPDF" class="btn btn-purple">PDF</button>
+    </div>
+
+    <!-- Meeting Info -->
+    <div class="meeting-info" id="meetingInfo">
+      <span id="meetingLabel">No active meeting</span>
+      <span class="participant-count" id="participantCount"></span>
+    </div>
+
+    <!-- Meeting Selector (for past meetings) -->
+    <div class="meeting-selector" id="meetingSelectorWrap" style="display:none;">
+      <label for="meetingSelect">Meeting:</label>
+      <select id="meetingSelect"></select>
+    </div>
+
+    <!-- Attendance Table -->
+    <div class="table-wrap">
+      <table id="attendanceTable">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Join</th>
+            <th>Leave</th>
+            <th>Duration</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="attendanceBody">
+          <tr class="empty-row">
+            <td colspan="6">No attendance data yet.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Sync Status -->
+    <div id="syncStatus" class="sync-status" style="display:none;"></div>
+
+    <!-- Footer Controls -->
+    <div class="footer-controls">
+      <button id="btnSync" class="btn btn-success btn-sm">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+        Sync Now
+      </button>
+      <button id="btnDashboard" class="btn btn-dashboard btn-sm">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        Dashboard
+      </button>
+      <button id="btnClear" class="btn btn-ghost btn-sm">Clear</button>
+    </div>
+
+    <!-- Info -->
+    <div class="privacy-notice">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      Auto-syncs to dashboard. No login required.
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
