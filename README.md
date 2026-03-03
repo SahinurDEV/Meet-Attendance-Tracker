@@ -84,35 +84,44 @@ meet-attendance-tracker/
 - **Node.js** 18+ and npm
 - **Google Chrome** browser (for the extension)
 
-## Installation
+## Quick Start
+
+```bash
+git clone https://github.com/devSahinur/Meet-Attendance-Tracker.git
+cd Meet-Attendance-Tracker
+npm install
+npm run dev
+```
+
+That's it. `npm install` automatically installs both server and client dependencies. `npm run dev` starts the backend API (port 5001) and React dashboard (port 5173) together. The SQLite database is created automatically on first run — no setup needed.
+
+> **Dashboard:** http://localhost:5173
+> **API Server:** http://localhost:5001
+
+## Installation (Step by Step)
 
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/meet-attendance-tracker.git
-cd meet-attendance-tracker
+git clone https://github.com/devSahinur/Meet-Attendance-Tracker.git
+cd Meet-Attendance-Tracker
 ```
 
 ### 2. Install dependencies
 
 ```bash
-# Install all dependencies (root + client)
-npm run install:all
+npm install
 ```
 
-Or manually:
-
-```bash
-npm install          # Server dependencies
-cd client && npm install  # Client dependencies
-```
+This installs both server and client dependencies automatically via `postinstall`.
 
 ### 3. Start the development servers
 
 ```bash
-# Start both server and client
 npm run dev
 ```
+
+This runs both the API server and React dashboard concurrently in one terminal.
 
 Or start them separately:
 
@@ -124,7 +133,7 @@ npm run server
 npm run client
 ```
 
-The API server runs at **http://localhost:5001** and the dashboard at **http://localhost:5173**.
+The API server runs at **http://localhost:5001** and the dashboard at **http://localhost:5173**. The SQLite database (`data.db`) is created automatically when the server starts for the first time.
 
 ### 4. Load the Chrome Extension
 
