@@ -6,8 +6,8 @@
   "license": "MIT",
   "scripts": {
     "test": "npm run test:unit && npm run test:integration",
-    "test:unit": "node --test test/unit/",
-    "test:integration": "node --test --test-concurrency=1 test/integration/",
+    "test:unit": "node scripts/run-tests.mjs test/unit",
+    "test:integration": "node scripts/run-tests.mjs test/integration --test-concurrency=1",
     "test:setup": "playwright install chromium",
     "lint": "eslint .",
     "screenshots": "node scripts/screenshots.mjs",
