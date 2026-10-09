@@ -155,6 +155,17 @@ Notes for Edge:
 - Edge may show a "Turn off extensions in developer mode" prompt after a restart. Choose **Keep** (or dismiss it) to keep the extension. A store listing for Edge Add-ons is on the roadmap.
 - Exports go to Edge's downloads list (Ctrl+J), like any other download.
 
+### Firefox (experimental)
+
+Firefox 140+ is supported through a separate build with a Firefox-specific manifest. The background runs as an event page instead of a service worker, and the manifest adds a Gecko add-on ID. It isn't on addons.mozilla.org yet.
+
+1. Build it: `npm install && npm run package:firefox` → `dist/meet-attendance-tracker-v<version>-firefox.zip`.
+2. Open `about:debugging#/runtime/this-firefox`, click **Load Temporary Add-on…** and pick the zip (or `dist/firefox/manifest.json`).
+3. Join a call on `meet.google.com`. If Firefox asks, allow the extension to run on that site (*Extensions* menu → *Meet Attendance Tracker*).
+
+Temporary add-ons are removed when Firefox restarts. For a lasting install you need a signed build, which comes with the planned AMO listing.
+`npm run lint:firefox` runs Mozilla's `web-ext lint` on the build.
+
 ### From source
 
 ```bash
@@ -201,6 +212,8 @@ npm run test:unit          # node:test, no browser
 npm run test:integration   # Playwright + Chromium with the unpacked extension
 npm run test:edge          # the same integration suite in an installed Microsoft Edge
 npm run package            # → dist/meet-attendance-tracker-v<version>.zip
+npm run package:firefox    # → dist/meet-attendance-tracker-v<version>-firefox.zip (build:firefox for an unpacked dir)
+npm run lint:firefox       # Mozilla web-ext lint on the Firefox build
 npm run screenshots        # regenerate docs/screenshots/*.png
 npm run icons              # re-render icons from assets/logo.svg
 python3 scripts/locales.py # regenerate extension/_locales/*/messages.json (see scripts/locales/README.md)
@@ -305,7 +318,9 @@ canvas and embedded as an anti-aliased image mask in the brand colour. Latin tex
 > Want to help? Look for [`good first issue`](https://github.com/SahinurDEV/Meet-Attendance-Tracker/issues?q=is%3Aopen+label%3A%22good+first+issue%22) and [`help wanted`](https://github.com/SahinurDEV/Meet-Attendance-Tracker/issues?q=is%3Aopen+label%3A%22help+wanted%22).
 
 - [ ] Chrome Web Store listing (in review)
-- [ ] Firefox and Edge builds
+- [x] Microsoft Edge (the Chrome build works as is; tested)
+- [ ] Firefox: experimental build available (`npm run package:firefox`); AMO listing next
+- [ ] Edge Add-ons store listing
 - [ ] Optional Google Sheets / Google Drive sync
 - [ ] Google Classroom integration (import rosters, post attendance)
 - [ ] Microsoft Teams and Zoom (web) support

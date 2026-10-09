@@ -76,11 +76,11 @@
     if (guest) frag.appendChild(h("span.st.guest", root.MAT.t("tag_guest")));
     return frag;
   }
-  /** Parse a trusted SVG string produced by MAT charts into a node. */
+  /** Parse an SVG string produced by MAT charts (all text escaped) into a node, as XML (no innerHTML). */
   function svgNode(markup) {
-    const tpl = document.createElement("template");
-    tpl.innerHTML = markup.trim();
-    return tpl.content.firstChild;
+    const doc = new DOMParser().parseFromString(markup.trim(), "image/svg+xml");
+    if (doc.getElementsByTagName("parsererror").length) return document.createTextNode("");
+    return document.importNode(doc.documentElement, true);
   }
   root.UI = { h, avatar, colorFor, initials, toast, exportAndDownload, copyTable, applyTheme, statusBadge, svgNode };
 })(globalThis);

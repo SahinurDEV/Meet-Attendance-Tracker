@@ -3,7 +3,9 @@
  * Only does local housekeeping: default settings, toolbar badge, keyboard
  * shortcuts, opening the dashboard. No network access, no remote code.
  */
-importScripts("lib/storage.js");
+// Chrome runs this file as a service worker. The Firefox build lists lib/storage.js as an earlier
+// background script instead, where importScripts() doesn't exist (see scripts/firefox.mjs).
+if (typeof importScripts === "function") importScripts("lib/storage.js");
 
 chrome.runtime.onInstalled.addListener(async (details) => {
   // Write defaults without overwriting existing preferences.
