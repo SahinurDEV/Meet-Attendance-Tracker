@@ -12,6 +12,7 @@ export function checkManifest(extDir) {
   if (m.host_permissions?.length) problems.push("host_permissions should be empty");
   const refs = [
     m.background?.service_worker,
+    ...(m.background?.scripts || []),
     m.action?.default_popup,
     ...Object.values(m.icons || {}),
     ...Object.values(m.action?.default_icon || {}),

@@ -14,13 +14,17 @@
     "screenshots": "node scripts/screenshots.mjs",
     "icons": "node scripts/build-icons.mjs",
     "lint:manifest": "node scripts/check-manifest.mjs",
-    "package": "node scripts/package.mjs"
+    "package": "node scripts/package.mjs",
+    "build:firefox": "node scripts/firefox.mjs",
+    "package:firefox": "node scripts/package.mjs --firefox",
+    "lint:firefox": "node scripts/firefox.mjs && web-ext lint --source-dir dist/firefox --self-hosted"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "eslint": "^10.12.0",
     "globals": "^17.13.0",
     "playwright": "^1.64.0",
+    "web-ext": "^8.10.0",
     "xlsx": "^0.18.5"
   },
   "engines": {

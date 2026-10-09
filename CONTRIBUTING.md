@@ -51,10 +51,17 @@ npm run test:integration # Playwright + Chromium with the unpacked extension and
 npm test                 # unit + integration
 npm run test:edge        # optional: integration suite in Microsoft Edge (npx playwright install msedge)
 npm run package          # → dist/meet-attendance-tracker-v<version>.zip
+npm run lint:firefox     # Firefox build + Mozilla web-ext lint (0 errors expected)
 ```
 
 CI runs all of these on every push to `main` and on every pull request, and uploads the packaged zip as a
 build artifact.
+
+### Firefox
+
+`scripts/firefox.mjs` derives the Firefox manifest from `extension/manifest.json`. Keep the Chrome
+manifest as the single source and put Firefox-only changes in `firefoxManifest()`. Playwright can't load
+extensions in Firefox, so test Firefox changes by hand (`about:debugging` → *Load Temporary Add-on*).
 
 ### Writing tests
 
