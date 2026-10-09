@@ -4,11 +4,14 @@ import path from "node:path";
 import { createRequire } from "node:module";
 import { fileURLToPath } from "node:url";
 import { checkManifest } from "./check-manifest.mjs";
+import { buildFirefox } from "./firefox.mjs";
 
 const require = createRequire(import.meta.url);
 const { zip } = require("../extension/lib/export.js");
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const EXT = path.join(ROOT, "extension");
+// `node scripts/package.mjs --firefox` packages the Firefox variant (see scripts/firefox.mjs).
+const FIREFOX = process.argv.includes("--firefox");
+const EXT = FIREFOX ? buildFirefox() : path.join(ROOT, "extension");
 
 const problems = checkManifest(EXT);
 if (problems.length) {
@@ -28,7 +31,7 @@ const files = [];
 
 const { version } = JSON.parse(readFileSync(path.join(EXT, "manifest.json"), "utf8"));
 mkdirSync(path.join(ROOT, "dist"), { recursive: true });
-const out = path.join(ROOT, "dist", `meet-attendance-tracker-v${version}.zip`);
+const out = path.join(ROOT, "dist", `meet-attendance-tracker-v${version}${FIREFOX ? "-firefox" : ""}.zip`);
 const bytes = zip(files.map((f) => ({ ...f, data: new Uint8Array(f.data) })));
 writeFileSync(out, bytes);
 console.log(`Packaged ${files.length} files (${(bytes.length / 1024).toFixed(1)} KB) → ${path.relative(ROOT, out)}`);
