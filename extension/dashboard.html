@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard · Meet Attendance Tracker</title>
+  <link rel="icon" href="icons/icon32.png">
+  <link rel="stylesheet" href="ui/theme.css">
+  <link rel="stylesheet" href="ui/dashboard.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="side">
+      <div class="side-brand"><img class="logo" src="icons/icon48.png" alt=""><div><strong>Meet Attendance</strong><span class="muted">Dashboard</span></div></div>
+      <nav>
+        <a href="#/meetings" data-nav="meetings"><span>📋</span>Meetings</a>
+        <a href="#/settings" data-nav="settings"><span>⚙️</span>Settings</a>
+        <a href="#/privacy" data-nav="privacy"><span>🔒</span>Privacy</a>
+      </nav>
+      <div class="side-foot muted">All data is stored in this browser only.<br><span id="storageUsed"></span></div>
+    </aside>
+    <main id="view" tabindex="-1"></main>
+  </div>
+  <div class="modal" id="modal" hidden>
+    <div class="modal-card card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <h3 id="modalTitle"></h3><p id="modalBody" class="muted"></p>
+      <div class="modal-actions"><button class="btn" id="modalCancel">Cancel</button><button class="btn danger solid" id="modalOk">Delete</button></div>
+    </div>
+  </div>
+  <script src="lib/core.js"></script>
+  <script src="lib/storage.js"></script>
+  <script src="lib/export.js"></script>
+  <script src="ui/common.js"></script>
+  <script src="ui/dashboard.js"></script>
+</body>
+</html>

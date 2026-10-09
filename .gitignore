@@ -29,3 +29,7 @@ npm-debug.log*
 # Temp
 *.tmp
 *.swp
+
+# Extension build output
+dist/
+test-results/
