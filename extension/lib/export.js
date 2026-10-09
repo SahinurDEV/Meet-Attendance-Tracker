@@ -748,6 +748,144 @@
     return doc.build({ title: `Attendance: ${table.title}` });
   }
 
+  // ── HTML report (mobile-friendly, self-contained) ──────────────────
+  const escHTML = (v) =>
+    String(v == null ? "" : v).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+
+  const HTML_CSS = `
+:root{--brand:#0f766e;--bg:#f6f8f8;--card:#fff;--text:#111827;--muted:#5b6472;--line:#e5e7eb;--alt:#f8fafc;
+--present:#15803d;--late:#b45309;--short:#7c3aed;--absent:#dc2626}
+@media (prefers-color-scheme:dark){:root{--bg:#0b1214;--card:#121b1e;--text:#e5e7eb;--muted:#9aa4b2;--line:#243035;--alt:#162125;
+--brand:#2dd4bf;--present:#4ade80;--late:#fbbf24;--short:#c4b5fd;--absent:#f87171}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans","Noto Sans Bengali",sans-serif;-webkit-text-size-adjust:100%}
+main{max-width:1100px;margin:0 auto;padding:16px}
+header{border-top:6px solid var(--brand);background:var(--card);border-radius:12px;padding:16px 18px;margin-bottom:14px}
+header .app{color:var(--brand);font-weight:700;font-size:13px;letter-spacing:.3px}
+h1{font-size:22px;margin:4px 0 2px}
+h2{font-size:17px;margin:22px 0 10px}
+.sub{color:var(--muted);font-size:13px;margin:0}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin:12px 0}
+.meta div{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 12px}
+.meta dt{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.4px}
+.meta dd{margin:2px 0 0;font-weight:600;overflow-wrap:anywhere}
+.pills{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0;padding:0;list-style:none}
+.pills li{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--c,var(--muted));border-radius:8px;padding:4px 10px;font-weight:600;font-size:13px;color:var(--c,var(--text))}
+.extra p{margin:4px 0}.extra b{color:var(--muted)}
+.notes{white-space:pre-wrap}
+table{width:100%;border-collapse:collapse;background:var(--card);border-radius:10px;overflow:hidden;border:1px solid var(--line)}
+th{background:var(--brand);color:#fff;text-align:left;font-size:13px;padding:8px 10px}
+@media (prefers-color-scheme:dark){th{color:#04201d}}
+td{padding:8px 10px;border-top:1px solid var(--line);font-size:14px;overflow-wrap:anywhere}
+tbody tr:nth-child(even){background:var(--alt)}
+.st{font-weight:700}
+.st-present{color:var(--present)}.st-late{color:var(--late)}.st-short{color:var(--short)}.st-absent{color:var(--absent)}
+.chat{list-style:none;padding:0;margin:0;background:var(--card);border:1px solid var(--line);border-radius:10px}
+.chat li{padding:8px 12px;border-top:1px solid var(--line)}.chat li:first-child{border-top:0}
+.chat time{color:var(--muted);font-size:12px;margin-right:8px}.chat b{color:var(--brand)}
+.chat p{margin:2px 0 0;white-space:pre-wrap;overflow-wrap:anywhere}
+footer{color:var(--muted);font-size:12px;margin:22px 0 8px;text-align:center}
+@media (max-width:640px){
+ main{padding:10px}
+ h1{font-size:19px}
+ thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+ table,tbody,tr,td{display:block;width:100%}
+ table{background:none;border:0}
+ tbody tr,tbody tr:nth-child(even){background:var(--card);border:1px solid var(--line);border-left:4px solid var(--c,var(--line));border-radius:10px;margin-bottom:8px;padding:6px 4px}
+ td{border:0;padding:3px 10px;display:flex;justify-content:space-between;gap:12px;text-align:right}
+ td::before{content:attr(data-label);color:var(--muted);font-size:12px;font-weight:600;text-align:left}
+ td.name{font-size:16px;font-weight:700;text-align:left;justify-content:flex-start}
+ td.name::before,td.num::before{display:none}
+ td.num{display:none}
+}
+@media print{body{background:#fff}header,.meta div,table,.chat{border-color:#ccc}}`;
+
+  /**
+   * Self-contained HTML report: same content as the PDF, but responsive (cards on phones),
+   * dark-mode aware and searchable. No scripts, no remote assets (enforced by a CSP meta tag).
+   */
+  function toHTML(table, opts = {}) {
+    const generated = opts.generatedAt != null ? opts.generatedAt : Date.now();
+    const s = table.summary;
+    const colorVar = { present: "--present", late: "--late", short: "--short", absent: "--absent" };
+    const pills = [
+      [`Present ${s.present}`, "present"],
+      [`Late ${s.late}`, "late"],
+      [`Too short ${s.short}`, "short"],
+    ];
+    if (s.expected != null) pills.push([`Absent ${s.absent}`, "absent"]);
+    if (s.attendanceRate != null) pills.push([`Attendance ${Math.round(s.attendanceRate * 100)}%`, null]);
+    pills.push([`Avg time ${core.formatDuration(s.avgTimeInCallMs)}`, null]);
+    pills.push([`Total speaking ${core.formatDuration(s.totalSpeakingMs)}`, null]);
+    if (s.topSpeaker) pills.push([`Top speaker: ${s.topSpeaker.name}`, null]);
+
+    const meta = table.meta.filter(([k]) => !["Meeting", "Roster", "Tags"].includes(k));
+    const extra = [];
+    const rosterMeta = table.meta.find(([k]) => k === "Roster");
+    if (rosterMeta) extra.push(rosterMeta);
+    const tags = table.meta.find(([k]) => k === "Tags");
+    if (tags) extra.push(tags);
+
+    const rows = table.rows
+      .map((row, ri) => {
+        const st = table.statuses[ri];
+        const cells = row
+          .map((cell, i) => {
+            const cls = i === 0 ? "num" : i === 1 ? "name" : i === 2 ? `st st-${escHTML(st)}` : "";
+            return `<td${cls ? ` class="${cls}"` : ""} data-label="${escHTML(table.headers[i])}"${i === 1 ? ' dir="auto"' : ""}>${escHTML(cell)}</td>`;
+          })
+          .join("");
+        return `<tr style="--c:var(${colorVar[st] || "--line"})">${cells}</tr>`;
+      })
+      .join("\n");
+
+    const chat = table.chat.length
+      ? `<h2>Chat (${table.chat.length} message${table.chat.length === 1 ? "" : "s"})</h2>
+<ul class="chat">${table.chat
+          .map(([time, sender, text]) => `<li><time>${escHTML(time)}</time><b dir="auto">${escHTML(sender)}</b><p dir="auto">${escHTML(text)}</p></li>`)
+          .join("")}</ul>`
+      : "";
+
+    return `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:">
+<meta name="color-scheme" content="light dark">
+<meta name="generator" content="${escHTML(APP_NAME)} ${escHTML(APP_VERSION)}">
+<title>Attendance: ${escHTML(table.title)}</title>
+<style>${HTML_CSS}</style>
+</head>
+<body>
+<main>
+<header>
+<div class="app">${escHTML(APP_NAME)}</div>
+<h1>Attendance Report</h1>
+<p class="sub" dir="auto">${escHTML(table.title)}</p>
+</header>
+<dl class="meta">${meta.map(([k, v]) => `<div><dt>${escHTML(k)}</dt><dd dir="auto">${escHTML(v)}</dd></div>`).join("")}</dl>
+<ul class="pills">${pills.map(([label, st]) => `<li${st ? ` style="--c:var(${colorVar[st]})"` : ""}>${escHTML(label)}</li>`).join("")}</ul>
+${extra.length || table.notes ? `<div class="extra">${extra.map(([k, v]) => `<p><b>${escHTML(k)}:</b> <span dir="auto">${escHTML(v)}</span></p>`).join("")}${table.notes ? `<p><b>Notes:</b></p><p class="notes" dir="auto">${escHTML(table.notes)}</p>` : ""}</div>` : ""}
+<h2>Participants (${table.rows.length})</h2>
+${
+  table.rows.length
+    ? `<table>
+<thead><tr>${table.headers.map((h) => `<th scope="col">${escHTML(h)}</th>`).join("")}</tr></thead>
+<tbody>
+${rows}
+</tbody>
+</table>`
+    : `<p class="sub">No participants recorded.</p>`
+}
+${chat}
+<footer>Generated locally by ${escHTML(APP_NAME)} on ${escHTML(core.formatDateTime(generated, opts.timeFormat || "24h"))} · no data left the device</footer>
+</main>
+</body>
+</html>
+`;
+  }
+
   // ── Series (recurring meeting) & bulk exports ──────────────────────
   /** matrix from MAT.seriesMatrix() → rows for CSV/XLSX. */
   function seriesRows(matrix, tf = "24h") {
@@ -831,11 +969,12 @@
     pdf: "application/pdf",
     json: "application/json",
     tsv: "text/tab-separated-values;charset=utf-8",
+    html: "text/html;charset=utf-8",
   };
 
   /**
    * Build {filename, mime, data} for a record.
-   * format: csv | xlsx | pdf | json | tsv | chat-csv
+   * format: csv | xlsx | pdf | html | json | tsv | chat-csv
    * ctx: { roster, renderer } (renderer = PDF Unicode text renderer, browser only)
    */
   function exportRecord(record, format, settings = {}, now, ctx = {}) {
@@ -845,6 +984,7 @@
     if (format === "csv") data = toCSV(table);
     else if (format === "xlsx") data = toXLSX(table);
     else if (format === "pdf") data = toPDF(table, { timeFormat: settings.timeFormat, renderer: ctx.renderer });
+    else if (format === "html") data = toHTML(table, { timeFormat: settings.timeFormat });
     else if (format === "json") data = toJSON(record, table);
     else if (format === "tsv") data = toTSV(table);
     else if (format === "chat-csv") {
@@ -897,6 +1037,7 @@
     toJSON,
     chatToCSV,
     toXLSX,
+    toHTML,
     workbookXLSX,
     toPDF,
     PdfDoc,

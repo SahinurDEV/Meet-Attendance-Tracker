@@ -35,7 +35,7 @@
 - ⏱️ **Hands-free.** Tracking starts when people appear in the call and saves automatically.
 - 📋 **Rosters.** Paste or import your class or team list and see who is Present, Late, Too short or Absent, live in the call.
 - 📊 **Dashboard and analytics.** Meeting history, per-person trends, recurring-meeting matrices, tags and notes.
-- 📤 **Exports.** CSV, Excel, a branded PDF report (Bengali names render correctly), JSON or copy as a table.
+- 📤 **Exports.** CSV, Excel, a branded PDF report (Bengali names render correctly), a mobile-friendly HTML report, JSON or copy as a table.
 - 🔒 **Private by design.** Only the `storage` permission. No network requests, no analytics, no audio or video.
 - 🌙 **Comfortable.** Dark mode, keyboard shortcuts, English and Bengali (বাংলা).
 
@@ -80,6 +80,7 @@
 | **CSV** | UTF-8 with BOM, RFC 4180 quoting, protected against formula injection. Includes a Status column and absentee rows. |
 | **XLSX** | Real Office Open XML: an *Attendance* sheet with meeting info, summary and status-coloured cells, plus a *Chat* sheet. |
 | **PDF** | Branded A4 report: logo, meeting info, summary pills (Present, Late, Too short, Absent, attendance %, average time, total speaking, top speaker), roster, tags, notes, status-coloured table and the chat. **Bengali and other non-Latin names render correctly.** |
+| **HTML** | A self-contained, **mobile-friendly report** (same content as the PDF): the table becomes cards on phones, it follows dark mode, the text is searchable, and it has no scripts or remote assets. |
 | **JSON** | Structured export: meeting, summary, participants with sessions, absentees and chat. |
 | **Copy as table** | Tab-separated rows on the clipboard, ready to paste into Google Sheets or Excel. |
 | **Chat CSV** | Just the chat: time, sender, message. |
@@ -114,6 +115,10 @@ File names include the meeting date, e.g. `meet-attendance_abc-defg-hij_2026-10-
   <tr>
     <td><img src="docs/screenshots/export-pdf.png" alt="Branded PDF export with Bengali names"></td>
     <td align="center"><img src="docs/screenshots/popup.png" alt="Popup" width="300"></td>
+  </tr>
+  <tr>
+    <td><img src="docs/screenshots/export-html.png" alt="HTML report on a desktop"></td>
+    <td align="center"><img src="docs/screenshots/export-html-mobile.png" alt="HTML report on a phone" width="300"></td>
   </tr>
 </table>
 
@@ -290,7 +295,7 @@ canvas and embedded as an anti-aliased image mask in the brand colour. Latin tex
 - [ ] Team / organisation workspace with shared rosters and reports
 - [ ] Scheduled email reports
 - [ ] AI meeting summaries (from chat and notes)
-- [ ] Mobile-friendly report viewer
+- [x] Mobile-friendly report (HTML export, on main and in the next release)
 - [ ] More languages (translations welcome)
 
 ## Contributing

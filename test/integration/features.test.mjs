@@ -134,6 +134,27 @@ test("live meeting: absentees, late/short rules, toasts, chat, shortcuts, export
   assert.equal(j.meeting.roster.name, "Product team");
   assert.equal(j.participants.find((p) => p.name === "Zara Late").status, "late");
   assert.equal(j.chat.length, 3);
+  // Mobile-friendly HTML report: download it, then render it on a phone-sized viewport.
+  const htmlFile = await download(page, () => panel.locator('[data-act="html"]').click());
+  assert.match(htmlFile.name, new RegExp(`^meet-attendance_${CODE}_.*\\.html$`));
+  const html = htmlFile.buf.toString("utf8");
+  assert.match(html, /Zara Late/);
+  assert.ok(!/<script/i.test(html));
+  const phone = await h.context.newPage();
+  await phone.setViewportSize({ width: 390, height: 844 });
+  await phone.setContent(html);
+  const layout = await phone.evaluate(() => {
+    const row = document.querySelector("tbody tr");
+    const cell = row.querySelector("td[data-label='Status']");
+    return {
+      headHidden: document.querySelector("thead").getBoundingClientRect().height <= 1,
+      rowDisplay: getComputedStyle(row).display,
+      label: getComputedStyle(cell, "::before").content,
+      overflow: document.documentElement.scrollWidth > window.innerWidth + 1,
+    };
+  });
+  assert.deepEqual(layout, { headHidden: true, rowDisplay: "block", label: '"Status"', overflow: false });
+  await phone.close();
   const chatCsv = await download(page, () => panel.locator('[data-act="chat-csv"]').click());
   assert.match(chatCsv.name, /^meet-chat_/);
   assert.match(chatCsv.buf.toString("utf8"), /শুভ সকাল!/);
@@ -200,6 +221,8 @@ test("dashboard: detail statuses, roster override, tags, notes, tag filter, bulk
   const parsed = JSON.parse(j.buf.toString("utf8"));
   assert.deepEqual(parsed.meeting.tags, ["sprint-12", "standup"]);
   assert.match(parsed.meeting.notes, /ship v2.1/);
+  const dashHtml = await download(dash, () => dash.locator('[data-export="html"]').click());
+  assert.match(dashHtml.buf.toString("utf8"), /Decided to ship v2\.1 on Friday\./);
 
   // Meetings list: seed a second, untagged meeting, then filter by tag.
   await h.worker.evaluate(async () => {

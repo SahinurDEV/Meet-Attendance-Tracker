@@ -803,7 +803,7 @@
     "message": "No audio or video is recorded; speaking time comes from Meet's on-screen speaking indicator."
   },
   "privacy_n3": {
-    "message": "Exports (CSV, XLSX, PDF, JSON) are generated locally by code bundled inside the extension."
+    "message": "Exports (CSV, XLSX, PDF, HTML, JSON) are generated locally by code bundled inside the extension."
   },
   "privacy_permTitle": {
     "message": "Permissions"
