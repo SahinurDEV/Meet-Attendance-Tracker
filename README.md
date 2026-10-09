@@ -198,7 +198,7 @@ npm run test:edge          # the same integration suite in an installed Microsof
 npm run package            # → dist/meet-attendance-tracker-v<version>.zip
 npm run screenshots        # regenerate docs/screenshots/*.png
 npm run icons              # re-render icons from assets/logo.svg
-python3 scripts/locales.py # regenerate extension/_locales/{en,bn}/messages.json
+python3 scripts/locales.py # regenerate extension/_locales/*/messages.json (see scripts/locales/README.md)
 ```
 
 ### Tests
@@ -308,7 +308,7 @@ canvas and embedded as an anti-aliased image mask in the brand colour. Latin tex
 - [ ] Scheduled email reports
 - [ ] AI meeting summaries (from chat and notes)
 - [ ] Mobile-friendly report viewer
-- [ ] More languages (translations welcome)
+- [ ] More languages: translations welcome, see [scripts/locales/README.md](scripts/locales/README.md)
 
 ## Contributing
 

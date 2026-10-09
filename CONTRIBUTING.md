@@ -68,16 +68,23 @@ build artifact.
 
 ## Translations
 
-Strings live in `scripts/locales.py` as `key: (English, Bengali)` pairs. Edit that file, then run:
+English and Bengali strings live in `scripts/locales.py` as `key: (English, Bengali)` pairs. Any other
+language is a JSON file in [`scripts/locales/`](scripts/locales/README.md), so you can add one without
+touching the Python file:
 
 ```bash
-python3 scripts/locales.py   # regenerates extension/_locales/{en,bn}/messages.json
+python3 scripts/locales.py --new es   # create scripts/locales/es.json, then fill in the "message" fields
+python3 scripts/locales.py            # regenerate extension/_locales/*/messages.json
+python3 scripts/locales.py --status   # translation progress per language
 ```
 
-Don't edit the JSON files by hand. The i18n tests check that both locales have the same keys and
-placeholders. They also check that the store-facing strings (name, description) are plain sentences and
-not keyword lists, because the Chrome Web Store rejects those. To add a new language, open an issue first;
-the generator will need a new column.
+Don't edit `extension/_locales/*/messages.json` by hand. The unit tests check that:
+- the generated files are up to date
+- every locale uses only English keys, with the same `$1`/`$2` placeholders
+- the store-facing strings (name, description) fit the Chrome Web Store limits and are plain sentences,
+  not keyword lists, which the store rejects
+
+Partial translations are welcome, because Chrome falls back to English for anything missing.
 
 ## Pull request process
 
