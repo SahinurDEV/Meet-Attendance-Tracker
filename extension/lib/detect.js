@@ -54,6 +54,14 @@
       "[data-participant-id]",
     ],
     endScreen: ["[data-call-ended]", '[jsname="r4nke"]'],
+    // Chat panel (only rendered while the chat side panel is, or has been, open)
+    chatMessage: ["[data-message-id]", "[data-chat-message-id]"],
+    chatGroup: "[data-sender-name], [data-sender-id], .GDhqjd, .Ss4fHf",
+    chatSenderName: ["[data-sender-name]", ".YTbUzc", ".poVWob", '[jsname="z5Wvwf"]'],
+    chatTime: ["[data-timestamp]", "[data-formatted-timestamp]", ".MuzmKe", ".MuzmKe span"],
+    chatText: ["[data-message-text]", '[jsname="dTKtvb"]', ".oIy2qc", ".ptNLrf"],
+    chatLegacyContainer: '[jsname="xySENc"]',
+    chatLegacyMessage: ".oIy2qc",
   };
 
   const END_TEXT_RE = /(you left the meeting|you've left the meeting|the call has ended|meeting ended|you've been removed from the meeting|return to home screen)/i;
@@ -222,6 +230,71 @@
     return { participants: [...byKey.values()], strategies: used };
   }
 
+  /** "10:42 AM" / "14:05" → epoch ms on the reference day (null if unparseable). */
+  function parseClockLabel(label, ref = Date.now()) {
+    const m = String(label || "").match(/(\d{1,2})[:.](\d{2})(?:[:.](\d{2}))?\s*([ap]\.?m\.?)?/i);
+    if (!m) return null;
+    let h = Number(m[1]);
+    const min = Number(m[2]);
+    const sec = Number(m[3] || 0);
+    if (m[4]) {
+      const pm = /p/i.test(m[4]);
+      if (h === 12) h = pm ? 12 : 0;
+      else if (pm) h += 12;
+    }
+    if (h > 23 || min > 59) return null;
+    const d = new Date(ref);
+    d.setHours(h, min, sec, 0);
+    // A label later than "now" most likely belongs to the previous day (calls over midnight).
+    if (d.getTime() - ref > 5 * 60000) d.setDate(d.getDate() - 1);
+    return d.getTime();
+  }
+
+  function firstAttr(el, sels, attrs) {
+    for (const sel of sels) {
+      const hit = el && (matches(el, sel) ? el : el.querySelector(sel));
+      if (!hit) continue;
+      for (const a of attrs) {
+        const v = hit.getAttribute(a);
+        if (v) return v;
+      }
+      const txt = (hit.textContent || "").trim();
+      if (txt) return txt;
+    }
+    return "";
+  }
+
+  /**
+   * Read chat messages currently in the DOM.
+   * @returns {Array<{id:string|null, sender:string, text:string, time:number|null, timeLabel:string}>}
+   */
+  function scanChat(doc = document, now = Date.now()) {
+    const out = [];
+    const seen = new Set();
+    const push = (el, id) => {
+      if (seen.has(el)) return;
+      seen.add(el);
+      const group = el.closest(SELECTORS.chatGroup) || el.parentElement;
+      const text = (firstAttr(el, SELECTORS.chatText, ["data-message-text"]) || el.textContent || "").trim();
+      if (!text) return;
+      let sender = group ? group.getAttribute("data-sender-name") || firstAttr(group, SELECTORS.chatSenderName, ["data-sender-name"]) : "";
+      if (/^you$/i.test(sender.trim())) sender = "You";
+      const tsAttr = (el.closest("[data-timestamp]") || {}).getAttribute ? el.closest("[data-timestamp]").getAttribute("data-timestamp") : null;
+      const timeLabel = group ? firstAttr(group, SELECTORS.chatTime, ["data-formatted-timestamp"]) : "";
+      let time = null;
+      if (tsAttr && /^\d+$/.test(tsAttr)) time = tsAttr.length <= 10 ? Number(tsAttr) * 1000 : Number(tsAttr);
+      if (time == null || !Number.isFinite(time) || time > 4e12 || time < 1e12) time = parseClockLabel(timeLabel, now);
+      out.push({ id: id || null, sender: sender || "Unknown", text, time, timeLabel });
+    };
+    for (const sel of SELECTORS.chatMessage) {
+      for (const el of qsa(doc, sel)) push(el, el.getAttribute("data-message-id") || el.getAttribute("data-chat-message-id"));
+    }
+    if (!out.length) {
+      for (const c of qsa(doc, SELECTORS.chatLegacyContainer)) for (const el of qsa(c, SELECTORS.chatLegacyMessage)) push(el, null);
+    }
+    return out;
+  }
+
   function isInCall(doc = document) {
     return SELECTORS.inCall.some((sel) => qsa(doc, sel).length > 0);
   }
@@ -240,5 +313,5 @@
     return t && !/^google meet$/i.test(t) && !/^[a-z]{3,4}-[a-z]{3,4}-[a-z]{3,4}$/i.test(t) ? t.slice(0, 120) : "";
   }
 
-  return { SELECTORS, scanParticipants, isInCall, isEndScreen, meetingTitle };
+  return { SELECTORS, scanParticipants, scanChat, parseClockLabel, isInCall, isEndScreen, meetingTitle };
 });

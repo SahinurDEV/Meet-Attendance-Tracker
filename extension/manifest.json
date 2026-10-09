@@ -1,12 +1,15 @@
 {
   "manifest_version": 3,
-  "name": "Meet Attendance Tracker",
-  "short_name": "Attendance",
-  "version": "2.0.0",
-  "description": "Automatic Google Meet attendance: join/leave times, time in call and speaking time. Export CSV, XLSX, PDF. 100% local.",
-  "permissions": ["storage"],
+  "name": "__MSG_extName__",
+  "short_name": "__MSG_extShortName__",
+  "version": "2.1.0",
+  "description": "__MSG_extDescription__",
+  "default_locale": "en",
+  "permissions": [
+    "storage"
+  ],
   "action": {
-    "default_title": "Meet Attendance Tracker",
+    "default_title": "__MSG_extName__",
     "default_popup": "popup.html",
     "default_icon": {
       "16": "icons/icon16.png",
@@ -26,11 +29,16 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://meet.google.com/*"],
+      "matches": [
+        "https://meet.google.com/*"
+      ],
       "js": [
         "lib/core.js",
+        "lib/rules.js",
         "lib/storage.js",
+        "lib/i18n.js",
         "lib/export.js",
+        "lib/textimage.js",
         "lib/detect.js",
         "content/panel.js",
         "content/content.js"
@@ -38,6 +46,22 @@
       "run_at": "document_idle"
     }
   ],
+  "commands": {
+    "toggle-panel": {
+      "suggested_key": {
+        "default": "Alt+Shift+M",
+        "mac": "Alt+Shift+M"
+      },
+      "description": "__MSG_cmdTogglePanel__"
+    },
+    "save-now": {
+      "suggested_key": {
+        "default": "Alt+Shift+S",
+        "mac": "Alt+Shift+S"
+      },
+      "description": "__MSG_cmdSaveNow__"
+    }
+  },
   "content_security_policy": {
     "extension_pages": "script-src 'self'; object-src 'self'"
   },

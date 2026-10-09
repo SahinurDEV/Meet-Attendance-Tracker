@@ -10,15 +10,16 @@ export const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "
 export const EXT_DIR = path.join(ROOT, "extension");
 const MOCK_HTML = readFileSync(path.join(ROOT, "test/fixtures/mock-meet.html"), "utf8");
 
-export async function launch({ headless = true, viewport = { width: 1440, height: 900 }, colorScheme = "light" } = {}) {
+export async function launch({ headless = true, viewport = { width: 1440, height: 900 }, colorScheme = "light", lang = "en-US" } = {}) {
   const userDataDir = mkdtempSync(path.join(os.tmpdir(), "mat-profile-"));
   const context = await chromium.launchPersistentContext(userDataDir, {
     channel: "chromium", // new headless mode supports extensions
     headless,
     viewport,
     colorScheme,
+    locale: lang,
     acceptDownloads: true,
-    args: [`--disable-extensions-except=${EXT_DIR}`, `--load-extension=${EXT_DIR}`, "--no-first-run", "--lang=en-US"],
+    args: [`--disable-extensions-except=${EXT_DIR}`, `--load-extension=${EXT_DIR}`, "--no-first-run", `--lang=${lang}`],
   });
   const externalRequests = [];
   await context.route("https://meet.google.com/**", (route) =>

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="system">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,36 +10,42 @@
 <body>
   <header class="top">
     <img class="logo" src="icons/icon48.png" alt="">
-    <div class="brand"><strong>Meet Attendance</strong><span class="muted">Tracker</span></div>
-    <span class="chip" title="Nothing ever leaves your device">🔒 Local only</span>
+    <div class="brand"><strong data-i18n="appShortTitle">Meet Attendance</strong><span class="muted" data-i18n="popup_tracker">Tracker</span></div>
+    <span class="chip" data-i18n-title="popup_localOnlyTitle">🔒 <span data-i18n="popup_localOnly">Local only</span></span>
   </header>
 
   <main>
     <section id="live" class="card live-card" aria-live="polite"></section>
 
     <section class="card settings" aria-label="Quick settings">
-      <label class="set"><span><b>Auto-save</b><small class="muted">Save attendance during the call</small></span>
+      <label class="set"><span><b data-i18n="set_autoSave">Auto-save</b><small class="muted" data-i18n="popup_autoSaveHelp"></small></span>
         <span class="switch"><input type="checkbox" id="autoSave"><span></span></span></label>
-      <label class="set"><span><b>Ignore my own name</b><small class="muted">Hide yourself in lists &amp; exports</small></span>
+      <label class="set"><span><b data-i18n="set_ignoreSelf">Ignore my own name</b><small class="muted" data-i18n="popup_ignoreSelfHelp"></small></span>
         <span class="switch"><input type="checkbox" id="ignoreSelf"><span></span></span></label>
-      <div class="set"><span><b>Time format</b></span>
+      <div class="set"><span><b data-i18n="set_timeFormat">Time format</b></span>
         <span class="seg" id="timeFormat"><button data-v="24h">24h</button><button data-v="12h">12h</button></span></div>
+      <div class="set"><span><b data-i18n="set_theme">Theme</b></span>
+        <span class="seg" id="theme"><button data-v="system" data-i18n-title="theme_system">⚙</button><button data-v="light" data-i18n-title="theme_light">☀</button><button data-v="dark" data-i18n-title="theme_dark">☾</button></span></div>
     </section>
 
     <section class="recent">
-      <div class="rec-head"><h3>Recent meetings</h3><a href="#" id="allMeetings">View all</a></div>
+      <div class="rec-head"><h3 data-i18n="popup_recent">Recent meetings</h3><a href="#" id="allMeetings" data-i18n="popup_viewAll">View all</a></div>
       <div id="recent"></div>
     </section>
   </main>
 
   <footer>
-    <button class="btn primary" id="openDashboard">Open dashboard</button>
-    <button class="btn" id="openSettings" title="All settings">Settings</button>
+    <button class="btn primary" id="openDashboard" data-i18n="btn_openDashboard">Open dashboard</button>
+    <button class="btn" id="openAnalytics" data-i18n="nav_analytics">Analytics</button>
+    <button class="btn" id="openSettings" data-i18n="nav_settings">Settings</button>
   </footer>
 
   <script src="lib/core.js"></script>
+  <script src="lib/rules.js"></script>
   <script src="lib/storage.js"></script>
+  <script src="lib/i18n.js"></script>
   <script src="lib/export.js"></script>
+  <script src="lib/textimage.js"></script>
   <script src="ui/common.js"></script>
   <script src="ui/popup.js"></script>
 </body>

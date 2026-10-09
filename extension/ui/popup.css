@@ -39,3 +39,7 @@ main { padding: 12px; display: flex; flex-direction: column; gap: 12px; }
 .mrow .cnt { font-weight: 700; color: var(--brand); font-size: 13px; }
 footer { display: flex; gap: 8px; padding: 0 12px 14px; }
 footer .btn.primary { flex: 1; }
+.absent-line { font-size: 12px; color: #b91c1c; padding: 6px 2px 0; }
+:root[data-theme="dark"] .absent-line { color: #fca5a5; }
+footer .btn { padding: 0 10px; }
+.seg button { min-width: 34px; }

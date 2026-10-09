@@ -28,6 +28,12 @@
   .side .av { width: 32px; height: 32px; border-radius: 50%; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 14px; }
   .side .nm { font-size: 14px; }
   .side .role { font-size: 12px; color: #5f6368; }
+  .chat-h { margin-top: 14px !important; }
+  .chat { flex: 1; overflow: auto; font-size: 13px; }
+  .chat .grp { margin: 8px 0; }
+  .chat .who { font-weight: 500; font-size: 13px; }
+  .chat .when { color: #5f6368; font-size: 12px; margin-left: 6px; }
+  .chat [data-message-id] { margin-top: 2px; }
   .bar { position: absolute; left: 0; right: 0; bottom: 0; height: 80px; display: flex; align-items: center; justify-content: center; gap: 12px; }
   .bar .code { position: absolute; left: 24px; font-size: 15px; }
   .bar button { width: 48px; height: 48px; border-radius: 50%; border: 0; background: #3c4043; color: #fff; font-size: 18px; }
@@ -44,6 +50,8 @@
       <h2>People</h2>
       <div class="sub">In the meeting</div>
       <div role="list" aria-label="Participants" id="plist"></div>
+      <h2 class="chat-h">In-call messages</h2>
+      <div class="chat" id="chat" aria-label="Chat messages"></div>
     </aside>
   </div>
   <div class="bar">
@@ -126,6 +134,30 @@
     flicker(name, ms = 400) { const p = people.get(name); if (!p) return; people.delete(name); render(); setTimeout(() => { people.set(name, p); render(); }, ms); },
     endCall() { people.clear(); render(); document.body.classList.add("call-ended"); },
     names() { return [...people.keys()]; },
+    /** Append a chat message (grouped by sender like Meet). opts: {id, time:"10:42 AM", ts} */
+    chat(sender, text, opts = {}) {
+      const box = document.getElementById("chat");
+      let grp = box.lastElementChild;
+      const when = opts.time || new Date(opts.ts || Date.now()).toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" });
+      if (!grp || grp.getAttribute("data-sender-name") !== sender || grp.getAttribute("data-formatted-timestamp") !== when) {
+        grp = document.createElement("div");
+        grp.className = "grp";
+        grp.setAttribute("data-sender-name", sender);
+        grp.setAttribute("data-formatted-timestamp", when);
+        grp.setAttribute("data-timestamp", String(opts.ts || Date.now()));
+        const head = document.createElement("div");
+        head.innerHTML = `<span class="who"></span><span class="when"></span>`;
+        head.firstChild.textContent = sender;
+        head.lastChild.textContent = when;
+        grp.appendChild(head);
+        box.appendChild(grp);
+      }
+      const m = document.createElement("div");
+      m.setAttribute("data-message-id", opts.id || `msg-${++seq}`);
+      m.textContent = text;
+      grp.appendChild(m);
+      return m.getAttribute("data-message-id");
+    },
   };
 
   // Default cast unless ?empty is set.

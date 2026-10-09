@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="system">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dashboard · Meet Attendance Tracker</title>
+  <title>Meet Attendance Tracker</title>
   <link rel="icon" href="icons/icon32.png">
   <link rel="stylesheet" href="ui/theme.css">
   <link rel="stylesheet" href="ui/dashboard.css">
@@ -11,25 +11,33 @@
 <body>
   <div class="layout">
     <aside class="side">
-      <div class="side-brand"><img class="logo" src="icons/icon48.png" alt=""><div><strong>Meet Attendance</strong><span class="muted">Dashboard</span></div></div>
+      <div class="side-brand"><img class="logo" src="icons/icon48.png" alt=""><div><strong data-i18n="appShortTitle">Meet Attendance</strong><span class="muted" data-i18n="nav_dashboard">Dashboard</span></div></div>
       <nav>
-        <a href="#/meetings" data-nav="meetings"><span>📋</span>Meetings</a>
-        <a href="#/settings" data-nav="settings"><span>⚙️</span>Settings</a>
-        <a href="#/privacy" data-nav="privacy"><span>🔒</span>Privacy</a>
+        <a href="#/meetings" data-nav="meetings"><span aria-hidden="true">📋</span><b data-i18n="nav_meetings">Meetings</b></a>
+        <a href="#/analytics" data-nav="analytics"><span aria-hidden="true">📈</span><b data-i18n="nav_analytics">Analytics</b></a>
+        <a href="#/series" data-nav="series"><span aria-hidden="true">🔁</span><b data-i18n="nav_series">Series</b></a>
+        <a href="#/rosters" data-nav="rosters"><span aria-hidden="true">👥</span><b data-i18n="nav_rosters">Rosters</b></a>
+        <a href="#/settings" data-nav="settings"><span aria-hidden="true">⚙️</span><b data-i18n="nav_settings">Settings</b></a>
+        <a href="#/privacy" data-nav="privacy"><span aria-hidden="true">🔒</span><b data-i18n="nav_privacy">Privacy</b></a>
       </nav>
-      <div class="side-foot muted">All data is stored in this browser only.<br><span id="storageUsed"></span></div>
+      <div class="side-foot muted"><span data-i18n="side_localOnly">All data is stored in this browser only.</span><br><span id="storageUsed"></span></div>
     </aside>
     <main id="view" tabindex="-1"></main>
   </div>
   <div class="modal" id="modal" hidden>
     <div class="modal-card card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-      <h3 id="modalTitle"></h3><p id="modalBody" class="muted"></p>
-      <div class="modal-actions"><button class="btn" id="modalCancel">Cancel</button><button class="btn danger solid" id="modalOk">Delete</button></div>
+      <h3 id="modalTitle"></h3><div id="modalBody" class="muted"></div>
+      <div class="modal-actions"><button class="btn" id="modalCancel"></button><button class="btn danger solid" id="modalOk"></button></div>
     </div>
   </div>
   <script src="lib/core.js"></script>
+  <script src="lib/rules.js"></script>
   <script src="lib/storage.js"></script>
+  <script src="lib/i18n.js"></script>
   <script src="lib/export.js"></script>
+  <script src="lib/textimage.js"></script>
+  <script src="lib/analytics.js"></script>
+  <script src="lib/charts.js"></script>
   <script src="ui/common.js"></script>
   <script src="ui/dashboard.js"></script>
 </body>

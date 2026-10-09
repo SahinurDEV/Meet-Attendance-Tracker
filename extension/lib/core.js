@@ -129,6 +129,12 @@
   }
 
   // ── Tracker ────────────────────────────────────────────────────────
+  function chatHash(s) {
+    let h = 2166136261;
+    for (let i = 0; i < s.length; i++) h = Math.imul(h ^ s.charCodeAt(i), 16777619);
+    return "c" + (h >>> 0).toString(36);
+  }
+
   const DEFAULT_TRACKER_OPTS = {
     graceMs: 10000, // absent this long before we record a leave (DOM flicker / tile paging)
     maxTickMs: 5000, // cap per-sample speaking delta (throttled background tabs)
@@ -156,7 +162,31 @@
         endedAt: meta.endedAt != null ? meta.endedAt : null,
       };
       this.participants = new Map();
+      this.chat = [];
+      this._chatIds = new Set();
       this.lastUpdate = startedAt;
+    }
+
+    /**
+     * Add chat messages scraped from the Meet chat panel. Messages are
+     * de-duplicated by id (or sender+text+time label when Meet gives no id).
+     * @param {Array<{id?:string,sender:string,text:string,time?:number,timeLabel?:string}>} msgs
+     * @returns {number} number of new messages
+     */
+    addChat(msgs, now = Date.now()) {
+      let added = 0;
+      for (const m of msgs || []) {
+        const text = String(m.text || "").trim();
+        if (!text) continue;
+        const sender = normalizeName(m.sender || "") || "Unknown";
+        const id = m.id || chatHash(`${sender}|${text}|${m.timeLabel || ""}`);
+        if (this._chatIds.has(id)) continue;
+        this._chatIds.add(id);
+        this.chat.push({ id, sender, text: text.slice(0, 4000), at: Number.isFinite(m.time) ? m.time : now });
+        added++;
+      }
+      if (added) this.chat.sort((a, b) => a.at - b.at);
+      return added;
     }
 
     get ended() {
@@ -273,6 +303,7 @@
         version: RECORD_VERSION,
         ...this.meta,
         updatedAt: now,
+        chat: this.chat.map((c) => ({ ...c })),
         participants: [...this.participants.values()].map((p) => ({
           key: p.key,
           name: p.name,
@@ -318,6 +349,10 @@
         // don't reappear, their session still closes at their real lastSeen.
         if (p.present) p.missingSince = r.missingSince != null ? r.missingSince : resumeAt;
         t.participants.set(p.key, p);
+      }
+      for (const c of record.chat || []) {
+        t.chat.push({ ...c });
+        t._chatIds.add(c.id);
       }
       t.lastUpdate = record.updatedAt || resumeAt;
       return t;

@@ -45,7 +45,10 @@ test("manifest is valid MV3 with minimal permissions and loads without errors", 
   assert.equal(manifest.host_permissions, undefined);
   assert.deepEqual(manifest.content_scripts[0].matches, ["https://meet.google.com/*"]);
   const live = await h.worker.evaluate(() => chrome.runtime.getManifest());
-  assert.equal(live.name, manifest.name);
+  assert.equal(manifest.name, "__MSG_extName__");
+  assert.equal(live.name, "Meet Attendance Tracker"); // resolved from _locales/en
+  assert.equal(manifest.default_locale, "en");
+  assert.deepEqual(Object.keys(manifest.commands).sort(), ["save-now", "toggle-panel"]);
   const info = await extensionsInfo();
   assert.equal(info.state, "ENABLED");
   assert.deepEqual(info.manifestErrors, []);

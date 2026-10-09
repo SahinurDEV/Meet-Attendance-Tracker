@@ -25,20 +25,20 @@ function sampleRecord() {
 test("buildTable has the expected columns and respects settings", () => {
   const rec = sampleRecord();
   const table = ex.buildTable(rec, { timeFormat: "24h" });
-  assert.deepEqual(table.headers, ["#", "Name", "First Seen", "Last Seen", "Time in Call", "Speaking Time", "Joins"]);
+  assert.deepEqual(table.headers, ["#", "Name", "Status", "First Seen", "Last Seen", "Time in Call", "Speaking Time", "Joins"]);
   assert.equal(table.rows.length, 5);
   const alice = table.rows.find((r) => r[1].startsWith("Alice"));
-  assert.deepEqual(alice.slice(1), ["Alice Smith (You)", "08:00:00", "09:02:05", "01:02:05", "00:00:05", "1"]); // 90s sample gap capped at maxTickMs
+  assert.deepEqual(alice.slice(1), ["Alice Smith (You)", "Present", "08:00:00", "09:02:05", "01:02:05", "00:00:05", "1"]); // 90s sample gap capped at maxTickMs
   assert.ok(table.meta.some(([k, v]) => k === "Date" && v === "2026-10-09"));
   const t12 = ex.buildTable(rec, { timeFormat: "12h", ignoreSelf: true });
   assert.equal(t12.rows.length, 4);
   assert.ok(!t12.rows.some((r) => r[1].startsWith("Alice")));
-  assert.equal(t12.rows[0][2], "8:00:00 AM");
+  assert.equal(t12.rows[0][3], "8:00:00 AM");
 });
 
 test("CSV output is RFC-4180 quoted, BOM-prefixed and formula-safe", () => {
   const csv = ex.toCSV(ex.buildTable(sampleRecord()));
-  assert.ok(csv.startsWith("\uFEFF#,Name,First Seen,Last Seen,Time in Call,Speaking Time,Joins\r\n"));
+  assert.ok(csv.startsWith("\uFEFF#,Name,Status,First Seen,Last Seen,Time in Call,Speaking Time,Joins\r\n"));
   assert.ok(csv.includes('"Bob ""The Builder"", Jr."'));
   assert.ok(csv.includes("'=HYPERLINK(1)"));
   assert.ok(csv.includes("রহিম উদ্দিন"));
@@ -72,11 +72,11 @@ test("XLSX output opens in SheetJS with correct cells", () => {
   const bytes = ex.toXLSX(ex.buildTable(rec));
   assert.equal(bytes[0], 0x50); // PK
   const wb = XLSX.read(bytes, { type: "array" });
-  assert.deepEqual(wb.SheetNames, ["Attendance"]);
+  assert.deepEqual(wb.SheetNames, ["Attendance"]); // no chat → no Chat sheet
   const rows = XLSX.utils.sheet_to_json(wb.Sheets.Attendance, { header: 1, raw: true, defval: "" });
   const headerIdx = rows.findIndex((r) => r[1] === "Name");
   assert.ok(headerIdx > 0);
-  assert.deepEqual(rows[headerIdx], ["#", "Name", "First Seen", "Last Seen", "Time in Call", "Speaking Time", "Joins"]);
+  assert.deepEqual(rows[headerIdx], ["#", "Name", "Status", "First Seen", "Last Seen", "Time in Call", "Speaking Time", "Joins"]);
   const data = rows.slice(headerIdx + 1).filter((r) => r[1]);
   assert.equal(data.length, 5);
   assert.equal(data[0][0], 1); // numeric

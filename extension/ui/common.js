@@ -52,11 +52,35 @@
     clearTimeout(toastTimer);
     toastTimer = setTimeout(() => t.classList.remove("show"), 2200);
   }
-  function exportAndDownload(record, fmt, settings, now) {
-    const file = root.MAT.exportRecord(record, fmt, settings, now);
+  let renderer = null;
+  /** ctx: { roster } */
+  function exportAndDownload(record, fmt, settings, now, ctx = {}) {
+    if (fmt === "pdf" && !renderer) renderer = root.MAT.createTextRenderer();
+    const file = root.MAT.exportRecord(record, fmt, settings, now, Object.assign({ renderer }, ctx));
     root.MAT.downloadFile(file);
-    toast(`Downloaded ${file.filename}`);
+    toast(root.MAT.t("toast_downloaded", file.filename));
     return file;
   }
-  root.UI = { h, avatar, colorFor, initials, toast, exportAndDownload };
+  async function copyTable(record, settings, now, ctx = {}) {
+    const table = root.MAT.buildTable(record, settings, now, ctx);
+    const ok = await root.MAT.copyText(root.MAT.toTSV(table));
+    toast(ok ? root.MAT.t("toast_copied") : root.MAT.t("toast_copyFailed"));
+    return ok;
+  }
+  function applyTheme(theme) {
+    document.documentElement.setAttribute("data-theme", theme || "system");
+  }
+  function statusBadge(status, guest) {
+    const frag = document.createDocumentFragment();
+    frag.appendChild(h("span.st." + status, root.MAT.tStatus(status)));
+    if (guest) frag.appendChild(h("span.st.guest", root.MAT.t("tag_guest")));
+    return frag;
+  }
+  /** Parse a trusted SVG string produced by MAT charts into a node. */
+  function svgNode(markup) {
+    const tpl = document.createElement("template");
+    tpl.innerHTML = markup.trim();
+    return tpl.content.firstChild;
+  }
+  root.UI = { h, avatar, colorFor, initials, toast, exportAndDownload, copyTable, applyTheme, statusBadge, svgNode };
 })(globalThis);

@@ -93,4 +93,12 @@ h1 { font-size: clamp(36px, 5vw, 58px); line-height: 1.05; letter-spacing: -1.5p
   .privacy-badge { width: 96px; height: 96px; font-size: 44px; border-radius: 26px; }
   .section { padding: 60px 0; }
 }
+.roadmap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.plan { position: relative; background: #fff; border: 1px dashed #94a3b8; border-radius: 18px; padding: 22px 24px; }
+.plan h3 { margin: 10px 0 6px; font-size: 17px; }
+.plan p { margin: 0; color: var(--ink-2); font-size: 15px; }
+.badge-planned { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: .4px; text-transform: uppercase; color: #92400e; background: #fef3c7; border-radius: 999px; padding: 3px 10px; }
+kbd { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .82em; background: #f1f5f9; border: 1px solid #cbd5e1; border-bottom-width: 2px; border-radius: 6px; padding: 0 5px; }
+@media (max-width: 980px) { .roadmap { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 620px) { .roadmap { grid-template-columns: 1fr; } }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
