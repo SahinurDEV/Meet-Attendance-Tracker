@@ -13,7 +13,9 @@ const MOCK_HTML = readFileSync(path.join(ROOT, "test/fixtures/mock-meet.html"), 
 export async function launch({ headless = true, viewport = { width: 1440, height: 900 }, colorScheme = "light", lang = "en-US" } = {}) {
   const userDataDir = mkdtempSync(path.join(os.tmpdir(), "mat-profile-"));
   const context = await chromium.launchPersistentContext(userDataDir, {
-    channel: "chromium", // new headless mode supports extensions
+    // "chromium" (default) uses Playwright's Chromium, whose new headless mode supports extensions.
+    // Set MAT_BROWSER_CHANNEL=msedge to run the same suite against an installed Microsoft Edge.
+    channel: process.env.MAT_BROWSER_CHANNEL || "chromium",
     headless,
     viewport,
     colorScheme,

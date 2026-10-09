@@ -134,6 +134,22 @@ File names include the meeting date, e.g. `meet-attendance_abc-defg-hij_2026-10-
 To update, download the new zip, replace the folder's contents and click the reload icon on the extension card.
 Your data is kept, because it lives in the browser and not in the folder.
 
+### Microsoft Edge
+
+The same release zip works in Edge (tested with Edge 155; the full integration suite passes in Edge, see `npm run test:edge`).
+
+1. Download and unzip the [latest release](https://github.com/SahinurDEV/Meet-Attendance-Tracker/releases/latest) as above.
+2. Open `edge://extensions`.
+3. Turn on **Developer mode** (the toggle in the left sidebar; on narrow windows it's under the ☰ menu).
+4. Click **Load unpacked** and select the unzipped folder.
+5. Click the puzzle-piece (Extensions) button in the toolbar and choose the eye icon (**Show in toolbar**) next to *Meet Attendance Tracker*.
+6. Join a call on `meet.google.com` in Edge.
+
+Notes for Edge:
+- Change the keyboard shortcuts at `edge://extensions/shortcuts`.
+- Edge may show a "Turn off extensions in developer mode" prompt after a restart. Choose **Keep** (or dismiss it) to keep the extension. A store listing for Edge Add-ons is on the roadmap.
+- Exports go to Edge's downloads list (Ctrl+J), like any other download.
+
 ### From source
 
 ```bash
@@ -178,6 +194,7 @@ npm run lint:manifest      # MV3, permissions and no-remote-code checks
 npm test                   # unit + integration
 npm run test:unit          # node:test, no browser
 npm run test:integration   # Playwright + Chromium with the unpacked extension
+npm run test:edge          # the same integration suite in an installed Microsoft Edge
 npm run package            # → dist/meet-attendance-tracker-v<version>.zip
 npm run screenshots        # regenerate docs/screenshots/*.png
 npm run icons              # re-render icons from assets/logo.svg
