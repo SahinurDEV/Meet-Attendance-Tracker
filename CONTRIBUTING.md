@@ -49,6 +49,7 @@ npm run lint:manifest    # MV3 / permission / no-remote-code checks
 npm run test:unit        # node:test, no browser (fast)
 npm run test:integration # Playwright + Chromium with the unpacked extension and a mock Meet page
 npm test                 # unit + integration
+npm run test:edge        # optional: integration suite in Microsoft Edge (npx playwright install msedge)
 npm run package          # → dist/meet-attendance-tracker-v<version>.zip
 ```
 
