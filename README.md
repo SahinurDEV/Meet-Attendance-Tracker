@@ -221,9 +221,9 @@ legacy/            v1 Express/SQLite server + React dashboard (unused by v2, see
 ### Landing page
 
 `docs/` is a static, dependency-free site with relative asset paths, published with GitHub Pages at
-**https://sahinurdev.github.io/Meet-Attendance-Tracker/** (source: the `/docs` folder). Until PR #1 is
-merged it is served from the `feature/full-extension` branch; after merging, switch Pages to `main` →
-`/docs` in **Settings → Pages**.
+**https://sahinurdev.github.io/Meet-Attendance-Tracker/** (source: the `/docs` folder). It is currently
+served from the `feature/full-extension` branch so the v2.1 page is live; once v2.1 is merged into `main`,
+switch Pages to `main` → `/docs` in **Settings → Pages**.
 
 ## Known limitations
 
