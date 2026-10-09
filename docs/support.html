@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Support · Meet Attendance Tracker</title>
+  <meta name="description" content="Support and contact for the Meet Attendance Tracker Chrome extension.">
+  <meta name="theme-color" content="#0f766e">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .policy { max-width: 820px; padding: 56px 0 80px; }
+    .policy h1 { font-size: clamp(32px, 4vw, 44px); margin: 0 0 6px; }
+    .policy h2 { font-size: 22px; margin: 36px 0 10px; letter-spacing: -.3px; }
+    .policy p, .policy li { color: var(--ink-2); }
+    .policy ul { padding-left: 22px; }
+    .policy li { margin: 6px 0; }
+    .policy .updated { color: var(--muted); margin: 0 0 28px; }
+    .policy .tldr { background: var(--bg-2); border: 1px solid var(--line); border-radius: 16px; padding: 18px 22px; }
+    .policy table { border-collapse: collapse; width: 100%; margin: 10px 0; font-size: 15px; }
+    .policy th, .policy td { text-align: left; border-bottom: 1px solid var(--line); padding: 9px 8px; vertical-align: top; }
+    .policy th { color: var(--ink); }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html"><img src="assets/logo.svg" alt="" width="34" height="34"><span>Meet Attendance <em>Tracker</em></span></a>
+      <nav aria-label="Primary">
+        <a href="index.html#features">Features</a>
+        <a href="index.html#install">Install</a>
+        <a href="privacy.html" >Privacy</a>
+        <a class="btn btn-sm" href="https://github.com/SahinurDEV/Meet-Attendance-Tracker">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container policy" id="top">
+    <h1>Support</h1>
+    <p class="updated">Meet Attendance Tracker (Chrome extension)</p>
+    <div class="tldr"><p><strong>Need help, found a bug, or have a feature idea?</strong> Email <a href="mailto:infosahinur@gmail.com?subject=Meet%20Attendance%20Tracker%20support">infosahinur@gmail.com</a>. We usually reply within 1&ndash;2 business days.</p></div>
+    <h2>Quick fixes</h2>
+    <ul>
+      <li><strong>The Attendance button doesn't appear in Meet:</strong> reload the Meet tab after installing or updating the extension, and check that "Show in-Meet button" is on in Settings.</li>
+      <li><strong>Nobody is being tracked:</strong> open the People panel in Meet once; tracking keeps working after you close it.</li>
+      <li><strong>Chat isn't saved:</strong> open Meet's chat panel at least once during the call, and make sure chat capture is enabled in Settings.</li>
+      <li><strong>Speaking time looks low:</strong> speaking detection depends on Meet's on-screen indicators and is approximate.</li>
+      <li><strong>Where is my data?</strong> Everything is stored locally in your browser. Use Settings &rarr; Backup to export it. See the <a href="privacy.html">Privacy Policy</a>.</li>
+    </ul>
+    <h2>Reporting a bug</h2>
+    <p>Please include your Chrome version, the extension version (shown in the popup), what you expected, what happened, and a screenshot if possible. Don't send attendance exports that contain other people's personal data unless needed.</p>
+    <h2>Keyboard shortcuts</h2>
+    <ul><li>Alt+Shift+M: toggle the attendance panel</li><li>Alt+Shift+S: save now</li></ul>
+  </main>
+  <footer class="container" style="padding:24px 0 48px;color:var(--muted)"><a href="index.html">Home</a> &middot; <a href="privacy.html">Privacy</a> &middot; <a href="support.html">Support</a></footer>
+</body>
+</html>
