@@ -29,7 +29,7 @@ before(async () => {
   await p.close();
   h.context.on("request", (req) => {
     const u = new URL(req.url());
-    if (!["chrome-extension:", "chrome:", "data:", "blob:"].includes(u.protocol) && u.host !== "meet.google.com") offDeviceRequests.push(req.url());
+    if (!["chrome-extension:", "chrome:", "edge:", "data:", "blob:"].includes(u.protocol) && u.host !== "meet.google.com") offDeviceRequests.push(req.url());
   });
   await h.setSettings({ leaveGraceSec: 2, autoSaveIntervalSec: 5 });
 });

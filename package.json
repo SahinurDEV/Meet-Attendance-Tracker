@@ -8,6 +8,7 @@
     "test": "npm run test:unit && npm run test:integration",
     "test:unit": "node scripts/run-tests.mjs test/unit",
     "test:integration": "node scripts/run-tests.mjs test/integration --test-concurrency=1",
+    "test:edge": "MAT_BROWSER_CHANNEL=msedge node scripts/run-tests.mjs test/integration --test-concurrency=1",
     "test:setup": "playwright install chromium",
     "lint": "eslint .",
     "screenshots": "node scripts/screenshots.mjs",
