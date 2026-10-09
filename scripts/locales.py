@@ -1,6 +1,25 @@
-# Source of truth for extension/_locales/{en,bn}/messages.json.
-# Run: python3 scripts/locales.py   ($1, $2 … are chrome.i18n substitutions)
-import json, os
+#!/usr/bin/env python3
+"""Generate extension/_locales/<lang>/messages.json.
+
+Sources
+  * The table S below holds every string as a (English, Bengali) pair. English is the default locale
+    (manifest "default_locale": "en") and must contain every key. Bengali is kept complete as well.
+  * Any other language lives in scripts/locales/<code>.json, so a translation can be added without
+    touching this file. Each entry looks like  "key": {"en": "<English, for reference>", "message": "<translation>"}.
+    Entries with an empty "message" are untranslated: they are left out of messages.json and Chrome
+    falls back to English for them.
+
+Usage
+  python3 scripts/locales.py               regenerate all extension/_locales/*/messages.json
+  python3 scripts/locales.py --check       exit 1 if any generated file is out of date (used by the tests)
+  python3 scripts/locales.py --new es      create scripts/locales/es.json with every key to translate
+  python3 scripts/locales.py --update      add new keys / refresh the "en" reference in every scripts/locales/*.json
+  python3 scripts/locales.py --status      show how much of each language is translated
+
+$1, $2 … are chrome.i18n substitutions and must appear in the translation exactly as in English.
+"""
+import json, os, re, sys
+
 S = {
 "extName": ("Meet Attendance Tracker", "মিট অ্যাটেনডেন্স ট্র্যাকার"),
 "extShortName": ("Attendance", "উপস্থিতি"),
@@ -277,16 +296,147 @@ S = {
 "privacy_p3": ("Keyboard shortcuts use chrome.commands, which needs no permission.", "কীবোর্ড শর্টকাট chrome.commands ব্যবহার করে, যার জন্য অনুমতি লাগে না।"),
 "privacy_policy": ("Please respect your organisation's policies and local laws when recording attendance.", "উপস্থিতি রেকর্ডের সময় প্রতিষ্ঠানের নীতি ও স্থানীয় আইন মেনে চলুন।"),
 }
-root = os.path.join(os.path.dirname(__file__), "..", "extension", "_locales")
-for i, lang in enumerate(["en", "bn"]):
-    os.makedirs(os.path.join(root, lang), exist_ok=True)
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.join(HERE, "..", "extension", "_locales")
+EXTRA_DIR = os.path.join(HERE, "locales")
+BUILTIN = ["en", "bn"]  # columns of S
+# Locale codes accepted by the Chrome Web Store / chrome.i18n.
+CHROME_LOCALES = set("""ar am bg bn ca cs da de el en en_AU en_GB en_US es es_419 et fa fi fil fr gu he hi hr hu id it ja
+kn ko lt lv ml mr ms nl no pl pt_BR pt_PT ro ru sk sl sr sv sw ta te th tr uk ur vi zh_CN zh_TW""".split())
+STORE_KEYS = {"extName": 75, "extShortName": 12, "extDescription": 132}
+
+
+def subs(msg):
+    return sorted(re.findall(r"\$(\d)", msg))
+
+
+def problems_for(code, messages):
+    """Validate a {key: message} dict against English. Returns a list of human-readable problems."""
+    out = []
+    for k, msg in messages.items():
+        if k not in S:
+            out.append(f"{code}: unknown key {k!r} (not in English)")
+            continue
+        if subs(msg) != subs(S[k][0]):
+            out.append(f"{code}:{k}: placeholders {subs(msg)} differ from English {subs(S[k][0])}")
+        if re.search(r"\$(?!\d)", msg):
+            out.append(f"{code}:{k}: stray '$' (chrome.i18n would read it as a placeholder; rephrase)")
+        if k in STORE_KEYS and len(msg) > STORE_KEYS[k]:
+            out.append(f"{code}:{k}: {len(msg)} chars, the Chrome Web Store limit is {STORE_KEYS[k]}")
+    return out
+
+
+def load_extra():
+    """{code: {key: message}} for scripts/locales/*.json (only translated entries)."""
+    langs = {}
+    if not os.path.isdir(EXTRA_DIR):
+        return langs
+    for f in sorted(os.listdir(EXTRA_DIR)):
+        if not f.endswith(".json"):
+            continue
+        code = f[:-5]
+        if code not in CHROME_LOCALES:
+            sys.exit(f"scripts/locales/{f}: {code!r} is not a Chrome locale code (e.g. es, pt_BR, zh_CN)")
+        if code in BUILTIN:
+            sys.exit(f"scripts/locales/{f}: {code} is built into scripts/locales.py")
+        with open(os.path.join(EXTRA_DIR, f), encoding="utf-8") as fh:
+            data = json.load(fh)
+        langs[code] = {k: v["message"] for k, v in data.items() if not k.startswith("_") and v.get("message", "").strip()}
+    return langs
+
+
+def render(code, messages):
     out = {}
-    for k, v in S.items():
-        msg = v[i]
-        out[k] = {"message": msg}
-        if i == 0 and k in ("extName", "extDescription"):
+    for k in S:  # keep English key order
+        if k not in messages:
+            continue
+        out[k] = {"message": messages[k]}
+        if code == "en" and k in ("extName", "extDescription"):
             out[k]["description"] = "Shown in the Chrome Web Store and chrome://extensions"
-    with open(os.path.join(root, lang, "messages.json"), "w", encoding="utf-8") as f:
-        json.dump(out, f, ensure_ascii=False, indent=2)
-        f.write("\n")
-print(len(S), "keys")
+    return json.dumps(out, ensure_ascii=False, indent=2) + "\n"
+
+
+def all_languages():
+    langs = {code: {k: v[i] for k, v in S.items()} for i, code in enumerate(BUILTIN)}
+    langs.update(load_extra())
+    return langs
+
+
+def template(code, existing=None):
+    existing = existing or {}
+    data = {"_meta": existing.get("_meta", {"language": code, "translators": []})}
+    for k, v in S.items():
+        old = existing.get(k, {})
+        data[k] = {"en": v[0], "message": old.get("message", "")}
+    return json.dumps(data, ensure_ascii=False, indent=2) + "\n"
+
+
+def main(argv):
+    if argv[:1] == ["--new"]:
+        if len(argv) != 2:
+            sys.exit("usage: python3 scripts/locales.py --new <code>")
+        code = argv[1]
+        if code not in CHROME_LOCALES or code in BUILTIN:
+            sys.exit(f"{code!r} is not a supported new Chrome locale code (e.g. es, fr, pt_BR, zh_CN)")
+        path = os.path.join(EXTRA_DIR, code + ".json")
+        if os.path.exists(path):
+            sys.exit(f"{path} already exists; use --update")
+        os.makedirs(EXTRA_DIR, exist_ok=True)
+        with open(path, "w", encoding="utf-8") as fh:
+            fh.write(template(code))
+        print(f"Created scripts/locales/{code}.json with {len(S)} strings to translate.")
+        return 0
+    if argv[:1] == ["--update"]:
+        for f in sorted(os.listdir(EXTRA_DIR)) if os.path.isdir(EXTRA_DIR) else []:
+            if f.endswith(".json"):
+                path = os.path.join(EXTRA_DIR, f)
+                with open(path, encoding="utf-8") as fh:
+                    existing = json.load(fh)
+                with open(path, "w", encoding="utf-8") as fh:
+                    fh.write(template(f[:-5], existing))
+                print("updated", f)
+        return 0
+
+    langs = all_languages()
+    problems = [p for code, msgs in langs.items() for p in problems_for(code, msgs)]
+    missing_en = [k for k, v in S.items() if not v[0].strip()]
+    if missing_en:
+        problems.append(f"en: empty strings for {missing_en}")
+    if problems:
+        sys.exit("Locale problems:\n  " + "\n  ".join(problems))
+
+    if argv[:1] == ["--status"]:
+        for code, msgs in langs.items():
+            print(f"{code:6} {len(msgs):4}/{len(S)}  {100 * len(msgs) // len(S)}%")
+        return 0
+
+    check = argv[:1] == ["--check"]
+    stale = []
+    for code, msgs in langs.items():
+        path = os.path.join(ROOT, code, "messages.json")
+        text = render(code, msgs)
+        current = open(path, encoding="utf-8").read() if os.path.exists(path) else None
+        if current == text:
+            continue
+        if check:
+            stale.append(path)
+        else:
+            os.makedirs(os.path.dirname(path), exist_ok=True)
+            with open(path, "w", encoding="utf-8") as fh:
+                fh.write(text)
+    # Folders in _locales that no source produces anymore.
+    orphans = [d for d in sorted(os.listdir(ROOT)) if d not in langs]
+    if check:
+        if stale or orphans:
+            sys.exit("Out of date (run python3 scripts/locales.py): " + ", ".join([os.path.relpath(p) for p in stale] + [f"_locales/{o} (no source)" for o in orphans]))
+        print(f"{len(langs)} locales up to date")
+        return 0
+    if orphans:
+        print("warning: _locales has folders with no source:", ", ".join(orphans))
+    print(len(S), "keys,", ", ".join(f"{c} {len(m)}" for c, m in langs.items()))
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1:]))
