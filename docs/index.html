@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Meet Attendance Tracker: automatic, private Google Meet attendance</title>
+  <meta name="description" content="Free Chrome extension that records Google Meet attendance automatically: first seen, last seen, time in call and speaking time. Export to CSV, Excel and PDF. 100% local, no account.">
+  <meta property="og:title" content="Meet Attendance Tracker">
+  <meta property="og:description" content="Automatic, private Google Meet attendance. Export CSV, XLSX, PDF. Nothing leaves your device.">
+  <meta property="og:image" content="screenshots/meet-panel.png">
+  <meta name="theme-color" content="#0f766e">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#top"><img src="assets/logo.svg" alt="" width="34" height="34"><span>Meet Attendance <em>Tracker</em></span></a>
+      <nav aria-label="Primary">
+        <a href="#features">Features</a>
+        <a href="#screens">Screenshots</a>
+        <a href="#install">Install</a>
+        <a href="#privacy">Privacy</a>
+        <a class="btn btn-sm" href="https://github.com/SahinurDEV/Meet-Attendance-Tracker">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="pill">🔒 Free · Open source · 100% local</span>
+          <h1>Google Meet attendance that <span class="hl">takes itself</span>.</h1>
+          <p class="lead">A Chrome extension that quietly records who joined your call, when they were first and last seen, how long they stayed and how much they spoke. Then exports it to CSV, Excel or PDF in one click.</p>
+          <div class="cta">
+            <a class="btn btn-primary" href="#install">Install in 1 minute</a>
+            <a class="btn" href="https://github.com/SahinurDEV/Meet-Attendance-Tracker">View source</a>
+          </div>
+          <ul class="ticks">
+            <li>No account, no server</li><li>Manifest V3</li><li>Only the <code>storage</code> permission</li>
+          </ul>
+        </div>
+        <figure class="hero-shot">
+          <img src="screenshots/meet-panel.png" alt="The live Attendance panel inside a Google Meet call" width="1440" height="900">
+        </figure>
+      </div>
+    </section>
+
+    <section class="strip">
+      <div class="container strip-grid">
+        <div><b>Auto-save</b><span>during every call</span></div>
+        <div><b>4 metrics</b><span>per participant</span></div>
+        <div><b>3 formats</b><span>CSV · XLSX · PDF</span></div>
+        <div><b>0 bytes</b><span>sent anywhere</span></div>
+      </div>
+    </section>
+
+    <section id="features" class="section">
+      <div class="container">
+        <h2 class="h2">Everything you need to take attendance</h2>
+        <p class="sub">Built for teachers, team leads and anyone who needs to know who was really there.</p>
+        <div class="features">
+          <article class="feature"><div class="ic">⚡</div><h3>Automatic &amp; manual save</h3><p>Attendance is saved automatically while the call runs and when it ends. Prefer control? Turn auto-save off and hit <em>Save now</em> whenever you like.</p></article>
+          <article class="feature"><div class="ic">⏱️</div><h3>Accurate timing</h3><p><b>First seen</b>, <b>last seen</b> and <b>time in call</b> for everyone. Leaves and rejoins become separate sessions, and gaps aren't counted.</p></article>
+          <article class="feature"><div class="ic">🎙️</div><h3>Speaking time</h3><p>Uses Meet's own on-screen speaking indicator to estimate how long each person talked. No audio is ever processed.</p></article>
+          <article class="feature"><div class="ic">🪟</div><h3>Built into Meet</h3><p>An Attendance button and live panel sit right inside Google Meet, with search, live status and one-click exports.</p></article>
+          <article class="feature"><div class="ic">📊</div><h3>Dashboard &amp; history</h3><p>Every meeting in one place. Search by title, code, date or participant, open the details with a presence timeline, or delete.</p></article>
+          <article class="feature"><div class="ic">📁</div><h3>CSV, Excel &amp; PDF</h3><p>Clean exports with the meeting date in the file name. The encoders are bundled in the extension; nothing is loaded from a CDN.</p></article>
+          <article class="feature"><div class="ic">🙈</div><h3>Ignore my own name</h3><p>Leave yourself out of lists and exports, choose a 12h or 24h clock and tune auto-save, all from Settings.</p></article>
+          <article class="feature"><div class="ic">🛡️</div><h3>Robust detection</h3><p>Several detection strategies plus a MutationObserver keep it working as Meet's layout changes, and short UI glitches are smoothed out.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="screens" class="section alt">
+      <div class="container">
+        <h2 class="h2">See it in action</h2>
+        <p class="sub">Real screenshots from the extension's automated test suite.</p>
+        <div class="shots">
+          <figure class="shot wide"><img loading="lazy" src="screenshots/dashboard.png" alt="Dashboard with meeting history, search and statistics"><figcaption>Dashboard: meeting history with search and stats</figcaption></figure>
+          <figure class="shot wide"><img loading="lazy" src="screenshots/meeting-detail.png" alt="Meeting detail with first seen, last seen, time in call, speaking time and timeline"><figcaption>Meeting details: timing, speaking and presence timeline</figcaption></figure>
+          <figure class="shot tall"><img loading="lazy" src="screenshots/popup.png" alt="Extension popup showing a live meeting"><figcaption>Popup: live call, quick settings, recent meetings</figcaption></figure>
+          <figure class="shot tall"><img loading="lazy" src="screenshots/export-pdf.png" alt="PDF attendance report"><figcaption>PDF report</figcaption></figure>
+          <figure class="shot wide"><img loading="lazy" src="screenshots/settings.png" alt="Settings page"><figcaption>Settings: auto-save, ignore my name, time format, backups</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="how" class="section">
+      <div class="container">
+        <h2 class="h2">How it works</h2>
+        <ol class="steps">
+          <li><span>1</span><h3>Join a Meet call</h3><p>Tracking starts on its own as soon as participants appear.</p></li>
+          <li><span>2</span><h3>Watch it live</h3><p>Open the Attendance panel in Meet or the toolbar popup at any time.</p></li>
+          <li><span>3</span><h3>Export or review</h3><p>Download CSV, XLSX or PDF, or browse your history in the dashboard.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="install" class="section alt">
+      <div class="container install">
+        <div>
+          <h2 class="h2 left">Install (load unpacked)</h2>
+          <p class="sub left">Works in Chrome, Edge, Brave and other Chromium browsers (v110+).</p>
+          <ol class="install-steps">
+            <li>Download the code: <a href="https://github.com/SahinurDEV/Meet-Attendance-Tracker/archive/refs/heads/main.zip">ZIP</a> or <code>git clone https://github.com/SahinurDEV/Meet-Attendance-Tracker</code>, then unzip it.</li>
+            <li>Open <code>chrome://extensions</code>.</li>
+            <li>Switch on <b>Developer mode</b> (top-right).</li>
+            <li>Click <b>Load unpacked</b> and choose the <code>extension/</code> folder.</li>
+            <li>Pin <b>Meet Attendance Tracker</b> from the puzzle-piece menu and join a call.</li>
+          </ol>
+        </div>
+        <div class="code-card">
+          <div class="code-head"><i></i><i></i><i></i><span>terminal</span></div>
+<pre><code><span class="c"># build a store-ready zip</span>
+git clone https://github.com/SahinurDEV/Meet-Attendance-Tracker
+cd Meet-Attendance-Tracker
+npm install
+npm test          <span class="c"># unit + browser tests</span>
+npm run package   <span class="c"># → dist/meet-attendance-tracker-v2.0.0.zip</span></code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section id="privacy" class="section">
+      <div class="container privacy">
+        <div class="privacy-badge">🔒</div>
+        <div>
+          <h2 class="h2 left">Private by design</h2>
+          <ul class="checks">
+            <li><b>Stored locally.</b> Attendance lives in your browser's extension storage and nowhere else.</li>
+            <li><b>No network requests.</b> No servers, accounts, analytics, ads or third-party scripts.</li>
+            <li><b>No audio or video.</b> Only names and on-screen indicators that Meet already shows you are read.</li>
+            <li><b>Minimal permissions.</b> Just <code>storage</code>, plus a content script on <code>meet.google.com</code>.</li>
+            <li><b>You're in control.</b> Delete one meeting or everything, or back up to a JSON file.</li>
+          </ul>
+          <p class="note">Please follow your organisation's policies and local laws when recording attendance.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt">
+      <div class="container faq">
+        <h2 class="h2">FAQ</h2>
+        <details><summary>Do other participants need the extension?</summary><p>No. Only the person taking attendance installs it.</p></details>
+        <details><summary>Is speaking time exact?</summary><p>It's a close estimate from Meet's on-screen speaking indicator, sampled about once a second. Meet sometimes shows only some tiles, so open the People panel for the most complete list.</p></details>
+        <details><summary>What happens if I reload the Meet tab?</summary><p>The same meeting is resumed, so you won't get a duplicate.</p></details>
+        <details><summary>Does it work with Google Workspace accounts?</summary><p>Yes, it works with any account that can open meet.google.com in a Chromium browser.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="container foot-inner">
+      <span><img src="assets/logo.svg" alt="" width="22" height="22"> Meet Attendance Tracker · MIT License</span>
+      <span>Not affiliated with Google. Google Meet is a trademark of Google LLC.</span>
+    </div>
+  </footer>
+</body>
+</html>
