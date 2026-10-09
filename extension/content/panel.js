@@ -129,7 +129,7 @@
               <button class="btn" data-act="xlsx">XLSX</button>
               <button class="btn" data-act="pdf">PDF</button>
             </div>
-            <div class="links"><a data-act="copy"></a><a data-act="json">JSON</a><a data-act="chat-csv"></a></div>
+            <div class="links"><a data-act="copy"></a><a data-act="html">HTML</a><a data-act="json">JSON</a><a data-act="chat-csv"></a></div>
             <div class="status"><span class="saved"></span><a data-act="dashboard"></a></div>
           </div>
         </div>
