@@ -312,7 +312,7 @@
             h("span.chip.gray", `${M.formatDate(r.startedAt)} · ${fmtTime(r.startedAt)} – ${r.endedAt ? fmtTime(r.endedAt) : entry.live ? t("detail_now") : fmtTime(r.updatedAt)}`),
             r.url ? h("a.chip.gray", { href: r.url, target: "_blank", rel: "noopener" }, `${t("detail_openInMeet")} ↗`) : null)),
         h("div.btn-group",
-          ...["csv", "xlsx", "pdf", "json"].map((f) => h("button.btn" + (f === "csv" ? ".primary" : ""), { "data-export": f, onclick: async () => { const [rec, c] = await fresh(); exportAndDownload(rec, f, settings, now, c); } }, f.toUpperCase())),
+          ...["csv", "xlsx", "pdf", "html", "json"].map((f) => h("button.btn" + (f === "csv" ? ".primary" : ""), { "data-export": f, onclick: async () => { const [rec, c] = await fresh(); exportAndDownload(rec, f, settings, now, c); } }, f.toUpperCase())),
           h("button.btn", { id: "copyTable", onclick: async () => { const [rec, c] = await fresh(); copyTable(rec, settings, now, c); } }, t("btn_copyTable")),
           entry.live ? null : h("button.btn.danger", { onclick: () => remove(r) }, t("btn_delete")))),
       h("div.stats",

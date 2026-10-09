@@ -289,7 +289,7 @@ S = {
 "privacy_neverTitle": ("What is never done", "যা কখনও করা হয় না"),
 "privacy_n1": ("No servers, accounts, analytics, ads or trackers. The extension makes no network requests.", "কোনো সার্ভার, অ্যাকাউন্ট, অ্যানালিটিক্স, বিজ্ঞাপন বা ট্র্যাকার নেই। এক্সটেনশন কোনো নেটওয়ার্ক অনুরোধ করে না।"),
 "privacy_n2": ("No audio or video is recorded; speaking time comes from Meet's on-screen speaking indicator.", "কোনো অডিও বা ভিডিও রেকর্ড হয় না; কথা বলার সময় Meet-এর স্ক্রিনের নির্দেশক থেকে আসে।"),
-"privacy_n3": ("Exports (CSV, XLSX, PDF, JSON) are generated locally by code bundled inside the extension.", "এক্সপোর্ট (CSV, XLSX, PDF, JSON) এক্সটেনশনের ভেতরের কোড দিয়ে লোকালি তৈরি হয়।"),
+"privacy_n3": ("Exports (CSV, XLSX, PDF, HTML, JSON) are generated locally by code bundled inside the extension.", "এক্সপোর্ট (CSV, XLSX, PDF, HTML, JSON) এক্সটেনশনের ভেতরের কোড দিয়ে লোকালি তৈরি হয়।"),
 "privacy_permTitle": ("Permissions", "অনুমতি"),
 "privacy_p1": ("storage: save your settings, rosters and attendance history locally.", "storage: আপনার সেটিংস, রোস্টার ও উপস্থিতির ইতিহাস লোকালি সংরক্ষণ।"),
 "privacy_p2": ("meet.google.com content script: read the participant list and chat on Meet pages only.", "meet.google.com কনটেন্ট স্ক্রিপ্ট: শুধু Meet পাতায় অংশগ্রহণকারী তালিকা ও চ্যাট পড়া।"),
