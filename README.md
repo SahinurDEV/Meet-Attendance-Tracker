@@ -122,7 +122,7 @@ No build step is needed: `extension/` is plain JavaScript, HTML and CSS.
 
 ```bash
 npm install
-npm run package      # → dist/meet-attendance-tracker-v2.1.0.zip (ready for the Chrome Web Store)
+npm run package      # → dist/meet-attendance-tracker-v2.1.1.zip (ready for the Chrome Web Store)
 ```
 
 `npm run package` runs the manifest checks first (MV3, allowed permissions, every referenced file exists,

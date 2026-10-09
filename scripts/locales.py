@@ -4,8 +4,8 @@ import json, os
 S = {
 "extName": ("Meet Attendance Tracker", "মিট অ্যাটেনডেন্স ট্র্যাকার"),
 "extShortName": ("Attendance", "উপস্থিতি"),
-"extDescription": ("Automatic Google Meet attendance: join/leave times, speaking time, rosters, analytics. Export CSV, XLSX, PDF. 100% local.",
-                   "স্বয়ংক্রিয় Google Meet উপস্থিতি: যোগদান/প্রস্থান, কথা বলার সময়, রোস্টার, বিশ্লেষণ। CSV, XLSX, PDF এক্সপোর্ট। ১০০% লোকাল।"),
+"extDescription": ("Automatically takes attendance in Google Meet and lets you export a report, with all data kept on your device.",
+                   "Google Meet-এ স্বয়ংক্রিয়ভাবে উপস্থিতি নেয় এবং রিপোর্ট এক্সপোর্ট করতে দেয়, আর সব তথ্য আপনার ডিভাইসেই থাকে।"),
 "cmdTogglePanel": ("Show or hide the attendance panel in Meet", "Meet-এ উপস্থিতি প্যানেল দেখান বা লুকান"),
 "cmdSaveNow": ("Save attendance now", "এখনই উপস্থিতি সংরক্ষণ করুন"),
 "appShortTitle": ("Meet Attendance", "মিট অ্যাটেনডেন্স"),

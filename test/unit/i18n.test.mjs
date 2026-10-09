@@ -60,3 +60,17 @@ test("locales: every key used by the code exists; the manifest uses __MSG_ names
   assert.ok(en.extDescription.message.length <= 132, `description ${en.extDescription.message.length} chars`);
   assert.ok(bn.extDescription.message.length <= 132, `bn description ${bn.extDescription.message.length} chars`);
 });
+
+test("store-facing manifest strings read as natural text, not keyword lists (CWS spam policy)", () => {
+  const FORMATS = /\b(CSV|XLSX|PDF|JSON|TSV)\b/i;
+  for (const [lang, msgs] of [["en", en], ["bn", bn]]) {
+    for (const key of ["extName", "extShortName", "extDescription", "cmdTogglePanel", "cmdSaveNow"]) {
+      const m = msgs[key].message;
+      assert.ok(!FORMATS.test(m), `${lang}:${key} lists file formats: ${m}`);
+      assert.ok((m.match(/[,،،]/g) || []).length <= 1, `${lang}:${key} looks like a comma-separated list: ${m}`);
+      assert.ok(!/[:|·•/]/.test(m), `${lang}:${key} contains list separators: ${m}`);
+    }
+    // One sentence.
+    assert.equal((msgs.extDescription.message.match(/[.।!?](\s|$)/g) || []).length, 1, `${lang} description should be one sentence`);
+  }
+});

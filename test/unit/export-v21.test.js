@@ -48,7 +48,7 @@ test("JSON export is structured and complete", () => {
   assert.equal(f.filename, "meet-attendance_abc-defg-hij_2026-10-09_0800.json");
   const j = JSON.parse(f.data);
   assert.equal(j.app, "meet-attendance-tracker");
-  assert.equal(j.appVersion, "2.1.0");
+  assert.equal(j.appVersion, "2.1.1");
   assert.equal(j.meeting.durationSeconds, 3600);
   assert.deepEqual(j.meeting.tags, ["class", "week-1"]);
   assert.equal(j.meeting.roster.name, "CSE-301");
