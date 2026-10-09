@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Meet - Weekly Product Sync</title>
+<!--
+  Test fixture: a small, Meet-like page. It copies the DOM *patterns* the
+  extension relies on (participant tiles with data-participant-id and
+  data-self-name, a role=list "Participants" panel, a speaking indicator and
+  a "Leave call" control). It is NOT Google's markup. It's driven from tests
+  through window.mockMeet.
+-->
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #202124; color: #e8eaed; font-family: Roboto, Arial, sans-serif; height: 100vh; overflow: hidden; }
+  .stage { position: absolute; inset: 0 0 80px 0; display: flex; }
+  .grid { flex: 1; padding: 16px; display: grid; gap: 10px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); grid-auto-rows: minmax(150px, 1fr); align-content: center; }
+  .tile { position: relative; background: #3c4043; border-radius: 12px; display: flex; align-items: center; justify-content: center; overflow: hidden; border: 3px solid transparent; transition: border-color .15s; min-height: 150px; }
+  .tile.is-talking { border-color: #8ab4f8; }
+  .tile .pic { width: 76px; height: 76px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; font-weight: 500; color: #fff; }
+  .tile .zWGUib { position: absolute; left: 12px; bottom: 10px; font-size: 14px; text-shadow: 0 1px 2px #000; }
+  .tile .mic { position: absolute; right: 10px; top: 10px; width: 26px; height: 26px; border-radius: 50%; background: rgba(0,0,0,.35); display: flex; align-items: center; justify-content: center; font-size: 13px; }
+  .tile .mic[data-is-speaking="true"] { background: #1a73e8; }
+  .side { width: 330px; background: #fff; color: #202124; margin: 16px 16px 16px 0; border-radius: 12px; padding: 16px; display: flex; flex-direction: column; }
+  .side h2 { margin: 0 0 4px; font-size: 18px; font-weight: 400; }
+  .side .sub { font-size: 12px; color: #5f6368; margin-bottom: 10px; text-transform: uppercase; letter-spacing: .6px; }
+  .side [role=listitem] { display: flex; align-items: center; gap: 12px; padding: 8px 4px; }
+  .side .av { width: 32px; height: 32px; border-radius: 50%; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+  .side .nm { font-size: 14px; }
+  .side .role { font-size: 12px; color: #5f6368; }
+  .chat-h { margin-top: 14px !important; }
+  .chat { flex: 1; overflow: auto; font-size: 13px; }
+  .chat .grp { margin: 8px 0; }
+  .chat .who { font-weight: 500; font-size: 13px; }
+  .chat .when { color: #5f6368; font-size: 12px; margin-left: 6px; }
+  .chat [data-message-id] { margin-top: 2px; }
+  .bar { position: absolute; left: 0; right: 0; bottom: 0; height: 80px; display: flex; align-items: center; justify-content: center; gap: 12px; }
+  .bar .code { position: absolute; left: 24px; font-size: 15px; }
+  .bar button { width: 48px; height: 48px; border-radius: 50%; border: 0; background: #3c4043; color: #fff; font-size: 18px; }
+  .bar button.leave { width: 64px; border-radius: 24px; background: #ea4335; }
+  .ended { position: absolute; inset: 0; background: #fff; color: #202124; display: none; align-items: center; justify-content: center; flex-direction: column; gap: 12px; font-size: 28px; }
+  body.call-ended .ended { display: flex; }
+  body.call-ended .stage, body.call-ended .bar { display: none; }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <div class="grid" id="grid"></div>
+    <aside class="side" id="side" aria-label="People">
+      <h2>People</h2>
+      <div class="sub">In the meeting</div>
+      <div role="list" aria-label="Participants" id="plist"></div>
+      <h2 class="chat-h">In-call messages</h2>
+      <div class="chat" id="chat" aria-label="Chat messages"></div>
+    </aside>
+  </div>
+  <div class="bar">
+    <span class="code" id="code"></span>
+    <button aria-label="Turn off microphone">🎙</button>
+    <button aria-label="Turn off camera">📷</button>
+    <button aria-label="Present now">⬆</button>
+    <button class="leave" aria-label="Leave call" onclick="mockMeet.endCall()">📞</button>
+  </div>
+  <div class="ended"><div>You left the meeting</div><button>Return to home screen</button></div>
+<script>
+(() => {
+  const COLORS = ["#e8710a", "#1e8e3e", "#a142f4", "#d93025", "#1a73e8", "#f439a0", "#12b5cb", "#9334e6"];
+  const people = new Map(); // name -> {id, self, speaking, tile, inPanel}
+  let seq = 0;
+  const grid = document.getElementById("grid");
+  const plist = document.getElementById("plist");
+  document.getElementById("code").textContent = location.pathname.slice(1) + "  |  Weekly Product Sync";
+
+  function color(name) { let h = 0; for (const c of name) h = (h * 31 + c.charCodeAt(0)) >>> 0; return COLORS[h % COLORS.length]; }
+
+  function render() {
+    grid.replaceChildren();
+    plist.replaceChildren();
+    for (const [name, p] of people) {
+      const label = p.self ? `${name} (You)` : name;
+      if (p.tile) {
+        const tile = document.createElement("div");
+        tile.className = "tile" + (p.speaking ? " is-talking" : "");
+        tile.setAttribute("data-participant-id", `spaces/mock/devices/${p.id}`);
+        const pic = document.createElement("div");
+        pic.className = "pic";
+        pic.style.background = color(name);
+        pic.textContent = name[0];
+        const nm = document.createElement("div");
+        nm.className = "zWGUib";
+        nm.setAttribute("data-self-name", label);
+        nm.textContent = label;
+        const mic = document.createElement("div");
+        mic.className = "mic";
+        mic.setAttribute("data-is-speaking", String(!!p.speaking));
+        mic.textContent = p.speaking ? "▮▮" : "·";
+        tile.append(pic, nm, mic);
+        grid.appendChild(tile);
+      }
+      if (p.inPanel) {
+        const li = document.createElement("div");
+        li.setAttribute("role", "listitem");
+        li.setAttribute("aria-label", name);
+        const av = document.createElement("div");
+        av.className = "av";
+        av.style.background = color(name);
+        av.textContent = name[0];
+        const box = document.createElement("div");
+        const nm = document.createElement("div");
+        nm.className = "nm";
+        nm.textContent = label;
+        box.appendChild(nm);
+        if (p.host) {
+          const r = document.createElement("div");
+          r.className = "role";
+          r.textContent = "Meeting host";
+          box.appendChild(r);
+        }
+        li.append(av, box);
+        plist.appendChild(li);
+      }
+    }
+  }
+
+  window.mockMeet = {
+    /** opts: {self, speaking, tile=true, panel=true, host} */
+    join(name, opts = {}) {
+      people.set(name, { id: ++seq, self: !!opts.self, speaking: !!opts.speaking, tile: opts.tile !== false, inPanel: opts.panel !== false, host: !!opts.host });
+      render();
+    },
+    leave(name) { people.delete(name); render(); },
+    speak(name, on = true) { const p = people.get(name); if (p) { p.speaking = on; render(); } },
+    hideTile(name) { const p = people.get(name); if (p) { p.tile = false; render(); } },
+    flicker(name, ms = 400) { const p = people.get(name); if (!p) return; people.delete(name); render(); setTimeout(() => { people.set(name, p); render(); }, ms); },
+    endCall() { people.clear(); render(); document.body.classList.add("call-ended"); },
+    names() { return [...people.keys()]; },
+    /** Append a chat message (grouped by sender like Meet). opts: {id, time:"10:42 AM", ts} */
+    chat(sender, text, opts = {}) {
+      const box = document.getElementById("chat");
+      let grp = box.lastElementChild;
+      const when = opts.time || new Date(opts.ts || Date.now()).toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" });
+      if (!grp || grp.getAttribute("data-sender-name") !== sender || grp.getAttribute("data-formatted-timestamp") !== when) {
+        grp = document.createElement("div");
+        grp.className = "grp";
+        grp.setAttribute("data-sender-name", sender);
+        grp.setAttribute("data-formatted-timestamp", when);
+        grp.setAttribute("data-timestamp", String(opts.ts || Date.now()));
+        const head = document.createElement("div");
+        head.innerHTML = `<span class="who"></span><span class="when"></span>`;
+        head.firstChild.textContent = sender;
+        head.lastChild.textContent = when;
+        grp.appendChild(head);
+        box.appendChild(grp);
+      }
+      const m = document.createElement("div");
+      m.setAttribute("data-message-id", opts.id || `msg-${++seq}`);
+      m.textContent = text;
+      grp.appendChild(m);
+      return m.getAttribute("data-message-id");
+    },
+  };
+
+  // Default cast unless ?empty is set.
+  if (!/[?&]empty\b/.test(location.search)) {
+    mockMeet.join("Sahinur Rahman", { self: true, host: true });
+    mockMeet.join("Ayesha Siddiqua");
+    mockMeet.join("Daniel Kim");
+  }
+})();
+</script>
+</body>
+</html>

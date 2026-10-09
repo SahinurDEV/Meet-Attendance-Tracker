@@ -1,0 +1,823 @@
+{
+  "extName": {
+    "message": "Meet Attendance Tracker",
+    "description": "Shown in the Chrome Web Store and chrome://extensions"
+  },
+  "extShortName": {
+    "message": "Attendance"
+  },
+  "extDescription": {
+    "message": "Automatic Google Meet attendance: join/leave times, speaking time, rosters, analytics. Export CSV, XLSX, PDF. 100% local.",
+    "description": "Shown in the Chrome Web Store and chrome://extensions"
+  },
+  "cmdTogglePanel": {
+    "message": "Show or hide the attendance panel in Meet"
+  },
+  "cmdSaveNow": {
+    "message": "Save attendance now"
+  },
+  "appShortTitle": {
+    "message": "Meet Attendance"
+  },
+  "nav_dashboard": {
+    "message": "Dashboard"
+  },
+  "nav_meetings": {
+    "message": "Meetings"
+  },
+  "nav_analytics": {
+    "message": "Analytics"
+  },
+  "nav_series": {
+    "message": "Series"
+  },
+  "nav_rosters": {
+    "message": "Rosters"
+  },
+  "nav_settings": {
+    "message": "Settings"
+  },
+  "nav_privacy": {
+    "message": "Privacy"
+  },
+  "side_localOnly": {
+    "message": "All data is stored in this browser only."
+  },
+  "side_used": {
+    "message": "$1 KB used"
+  },
+  "panel_title": {
+    "message": "Attendance"
+  },
+  "panel_close": {
+    "message": "Close attendance panel"
+  },
+  "panel_search": {
+    "message": "Search participants…"
+  },
+  "panel_waiting": {
+    "message": "Waiting for the call to start…"
+  },
+  "panel_empty": {
+    "message": "No participants detected yet. Open Meet's People panel to speed up detection."
+  },
+  "panel_noMatch": {
+    "message": "No one matches your search."
+  },
+  "panel_inCall": {
+    "message": "In call"
+  },
+  "panel_leftAt": {
+    "message": "Left $1"
+  },
+  "panel_joinedAt": {
+    "message": "joined $1"
+  },
+  "panel_joins": {
+    "message": "$1 joins"
+  },
+  "panel_notHere": {
+    "message": "Not here yet"
+  },
+  "panel_notJoined": {
+    "message": "Hasn't joined"
+  },
+  "panel_autosaveOn": {
+    "message": "Auto-save is on"
+  },
+  "panel_autosaveOff": {
+    "message": "Auto-save is off"
+  },
+  "panel_autosaveOffHint": {
+    "message": "Auto-save off · use Save now"
+  },
+  "panel_savedJustNow": {
+    "message": "Saved just now"
+  },
+  "panel_savedAgo": {
+    "message": "Saved $1s ago"
+  },
+  "stat_inCall": {
+    "message": "In call"
+  },
+  "stat_totalSeen": {
+    "message": "Total seen"
+  },
+  "stat_expected": {
+    "message": "Expected"
+  },
+  "stat_duration": {
+    "message": "Duration"
+  },
+  "stat_uniquePeople": {
+    "message": "Unique people"
+  },
+  "stat_totalMeetingTime": {
+    "message": "Total meeting time"
+  },
+  "stat_avgAttendance": {
+    "message": "Avg. attendance"
+  },
+  "stat_perMeeting": {
+    "message": "per meeting"
+  },
+  "stat_avgRate": {
+    "message": "Avg. attendance rate"
+  },
+  "stat_attendance": {
+    "message": "Attendance"
+  },
+  "stat_participants": {
+    "message": "Participants"
+  },
+  "stat_avgTimeInCall": {
+    "message": "Avg. time in call"
+  },
+  "stat_totalSpeaking": {
+    "message": "Total speaking"
+  },
+  "status_present": {
+    "message": "Present"
+  },
+  "status_late": {
+    "message": "Late"
+  },
+  "status_short": {
+    "message": "Too short"
+  },
+  "status_absent": {
+    "message": "Absent"
+  },
+  "status_guestSuffix": {
+    "message": "(guest)"
+  },
+  "tag_you": {
+    "message": "YOU"
+  },
+  "tag_guest": {
+    "message": "Guest"
+  },
+  "notify_joined": {
+    "message": "$1 joined"
+  },
+  "notify_rejoined": {
+    "message": "$1 rejoined"
+  },
+  "notify_left": {
+    "message": "$1 left"
+  },
+  "btn_saveNow": {
+    "message": "Save now"
+  },
+  "btn_copyTable": {
+    "message": "Copy as table"
+  },
+  "btn_chatCsv": {
+    "message": "Chat CSV"
+  },
+  "btn_openDashboard": {
+    "message": "Open dashboard"
+  },
+  "btn_delete": {
+    "message": "Delete"
+  },
+  "btn_cancel": {
+    "message": "Cancel"
+  },
+  "btn_view": {
+    "message": "View"
+  },
+  "btn_edit": {
+    "message": "Edit"
+  },
+  "btn_save": {
+    "message": "Save"
+  },
+  "btn_export": {
+    "message": "Export"
+  },
+  "btn_bulkExport": {
+    "message": "Bulk export…"
+  },
+  "btn_gotIt": {
+    "message": "Got it"
+  },
+  "toast_saved": {
+    "message": "Attendance saved"
+  },
+  "toast_noParticipants": {
+    "message": "No participants detected yet"
+  },
+  "toast_nothingToExport": {
+    "message": "Nothing to export yet"
+  },
+  "toast_exported": {
+    "message": "Exported $1"
+  },
+  "toast_downloaded": {
+    "message": "Downloaded $1"
+  },
+  "toast_copied": {
+    "message": "Copied. Paste into Google Sheets or Excel"
+  },
+  "toast_copyFailed": {
+    "message": "Couldn't copy to the clipboard"
+  },
+  "toast_deleted": {
+    "message": "Deleted"
+  },
+  "toast_deletedN": {
+    "message": "Deleted $1 meetings"
+  },
+  "toast_settingsSaved": {
+    "message": "Settings saved"
+  },
+  "toast_tagsSaved": {
+    "message": "Tags saved"
+  },
+  "toast_notesSaved": {
+    "message": "Notes saved"
+  },
+  "toast_titleSaved": {
+    "message": "Title updated"
+  },
+  "toast_rosterSaved": {
+    "message": "Roster saved"
+  },
+  "toast_imported": {
+    "message": "Imported $1 meetings"
+  },
+  "toast_badBackup": {
+    "message": "That file is not a valid backup"
+  },
+  "chip_live": {
+    "message": "Live"
+  },
+  "popup_tracker": {
+    "message": "Tracker"
+  },
+  "popup_localOnly": {
+    "message": "Local only"
+  },
+  "popup_localOnlyTitle": {
+    "message": "Nothing ever leaves your device"
+  },
+  "popup_notInCall": {
+    "message": "Not in a Google Meet call"
+  },
+  "popup_notInCallHelp": {
+    "message": "Join a call on meet.google.com and attendance is recorded automatically. Look for the Attendance button in the bottom-right corner of Meet."
+  },
+  "popup_started": {
+    "message": "started $1"
+  },
+  "popup_recent": {
+    "message": "Recent meetings"
+  },
+  "popup_viewAll": {
+    "message": "View all"
+  },
+  "popup_noSaved": {
+    "message": "No saved meetings yet."
+  },
+  "popup_autoSaveHelp": {
+    "message": "Save attendance during the call"
+  },
+  "popup_ignoreSelfHelp": {
+    "message": "Hide yourself in lists & exports"
+  },
+  "welcome_title": {
+    "message": "Welcome to Meet Attendance Tracker 👋"
+  },
+  "welcome_body": {
+    "message": "Join any Google Meet call: attendance is recorded automatically and saved here. Everything stays on this device."
+  },
+  "meetings_sub": {
+    "message": "Your attendance history, stored locally in this browser."
+  },
+  "meetings_search": {
+    "message": "Search by meeting, code, date, tag or participant…"
+  },
+  "meetings_searchAria": {
+    "message": "Search meetings"
+  },
+  "meetings_sort": {
+    "message": "Sort meetings"
+  },
+  "meetings_filterByTag": {
+    "message": "Filter by tag"
+  },
+  "meetings_allTags": {
+    "message": "All"
+  },
+  "meetings_noMatch": {
+    "message": "No meetings match your filters."
+  },
+  "meetings_empty": {
+    "message": "No meetings yet. Join a Google Meet call and your attendance list will appear here."
+  },
+  "meetings_absentCount": {
+    "message": "$1 absent"
+  },
+  "sort_newest": {
+    "message": "Newest first"
+  },
+  "sort_oldest": {
+    "message": "Oldest first"
+  },
+  "sort_people": {
+    "message": "Most participants"
+  },
+  "sort_longest": {
+    "message": "Longest"
+  },
+  "col_meeting": {
+    "message": "Meeting"
+  },
+  "col_date": {
+    "message": "Date"
+  },
+  "col_duration": {
+    "message": "Duration"
+  },
+  "col_people": {
+    "message": "People"
+  },
+  "col_saved": {
+    "message": "Saved"
+  },
+  "col_name": {
+    "message": "Name"
+  },
+  "col_status": {
+    "message": "Status"
+  },
+  "col_firstSeen": {
+    "message": "First seen"
+  },
+  "col_lastSeen": {
+    "message": "Last seen"
+  },
+  "col_timeInCall": {
+    "message": "Time in call"
+  },
+  "col_speaking": {
+    "message": "Speaking"
+  },
+  "col_timeline": {
+    "message": "Presence timeline"
+  },
+  "col_attended": {
+    "message": "Attended"
+  },
+  "col_rate": {
+    "message": "Attendance rate"
+  },
+  "col_avgTime": {
+    "message": "Avg. time"
+  },
+  "saved_not": {
+    "message": "not saved"
+  },
+  "saved_manual": {
+    "message": "manual"
+  },
+  "saved_auto": {
+    "message": "auto"
+  },
+  "bulk_help": {
+    "message": "Export many meetings into one file. XLSX contains a summary sheet plus one sheet per meeting."
+  },
+  "bulk_from": {
+    "message": "From"
+  },
+  "bulk_to": {
+    "message": "To"
+  },
+  "bulk_tag": {
+    "message": "Tag"
+  },
+  "bulk_format": {
+    "message": "Format"
+  },
+  "bulk_xlsx": {
+    "message": "Excel workbook (.xlsx)"
+  },
+  "bulk_csv": {
+    "message": "Combined CSV"
+  },
+  "bulk_json": {
+    "message": "JSON"
+  },
+  "bulk_count": {
+    "message": "$1 meetings selected"
+  },
+  "bulk_none": {
+    "message": "No meetings in that range"
+  },
+  "delete_title": {
+    "message": "Delete this meeting?"
+  },
+  "delete_body": {
+    "message": "“$1” on $2 will be permanently removed from this device."
+  },
+  "back_meetings": {
+    "message": "All meetings"
+  },
+  "detail_missing": {
+    "message": "This meeting no longer exists."
+  },
+  "detail_titleAria": {
+    "message": "Meeting title"
+  },
+  "detail_roster": {
+    "message": "Roster (expected attendees)"
+  },
+  "detail_inCallNow": {
+    "message": "In call now"
+  },
+  "detail_session": {
+    "message": "$1 session"
+  },
+  "detail_sessions": {
+    "message": "$1 sessions"
+  },
+  "detail_timelineTitle": {
+    "message": "Time in call across the meeting"
+  },
+  "detail_noParticipants": {
+    "message": "No participants recorded."
+  },
+  "detail_now": {
+    "message": "now"
+  },
+  "detail_openInMeet": {
+    "message": "Open in Meet"
+  },
+  "detail_seriesLink": {
+    "message": "All sessions with this meeting code"
+  },
+  "roster_auto": {
+    "message": "Automatic (by meeting code)"
+  },
+  "roster_none": {
+    "message": "No roster"
+  },
+  "tags_label": {
+    "message": "Tags"
+  },
+  "tags_add": {
+    "message": "Add a tag and press Enter"
+  },
+  "tags_remove": {
+    "message": "Remove tag $1"
+  },
+  "notes_label": {
+    "message": "Notes"
+  },
+  "notes_placeholder": {
+    "message": "Agenda, decisions, follow-ups…"
+  },
+  "chat_title": {
+    "message": "Chat"
+  },
+  "analytics_sub": {
+    "message": "Attendance and participation across your meetings."
+  },
+  "analytics_range": {
+    "message": "Date range"
+  },
+  "range_7": {
+    "message": "Last 7 days"
+  },
+  "range_30": {
+    "message": "Last 30 days"
+  },
+  "range_90": {
+    "message": "Last 90 days"
+  },
+  "range_all": {
+    "message": "All time"
+  },
+  "analytics_attendanceOverTime": {
+    "message": "Attendance over time"
+  },
+  "analytics_topSpeakers": {
+    "message": "Top speakers"
+  },
+  "analytics_speakingShare": {
+    "message": "Speaking share"
+  },
+  "analytics_noSpeaking": {
+    "message": "No speaking time recorded in this range."
+  },
+  "analytics_empty": {
+    "message": "No meetings in this range yet."
+  },
+  "person_sub": {
+    "message": "Attended $1 of $2 expected meetings"
+  },
+  "person_trend": {
+    "message": "Time in call per meeting (minutes)"
+  },
+  "person_lateAbsent": {
+    "message": "Late / absent"
+  },
+  "person_missing": {
+    "message": "No data for this person."
+  },
+  "series_sub": {
+    "message": "Recurring meetings reuse the same Meet code. Open a series to see who attended which session."
+  },
+  "series_sessions": {
+    "message": "Sessions"
+  },
+  "series_range": {
+    "message": "First → last"
+  },
+  "series_recurring": {
+    "message": "recurring"
+  },
+  "series_missing": {
+    "message": "No meetings with this code."
+  },
+  "series_detailSub": {
+    "message": "Meeting code $1 · $2 sessions"
+  },
+  "rosters_sub": {
+    "message": "Expected attendees for a class or team. Link a roster to a meeting code to mark people Present, Late or Absent automatically."
+  },
+  "rosters_new": {
+    "message": "New roster"
+  },
+  "rosters_edit": {
+    "message": "Edit roster"
+  },
+  "rosters_members": {
+    "message": "$1 members"
+  },
+  "rosters_noCodes": {
+    "message": "Not linked to a meeting code"
+  },
+  "rosters_empty": {
+    "message": "No rosters yet. Create one by pasting names or importing a CSV."
+  },
+  "rosters_deleteTitle": {
+    "message": "Delete roster?"
+  },
+  "rosters_deleteBody": {
+    "message": "“$1” will be removed. Saved meetings are kept."
+  },
+  "rosters_imported": {
+    "message": "Imported $1 names"
+  },
+  "roster_name": {
+    "message": "Name"
+  },
+  "roster_namePh": {
+    "message": "e.g. CSE-301 Section A"
+  },
+  "roster_codes": {
+    "message": "Linked meeting codes"
+  },
+  "roster_codesHelp": {
+    "message": "Comma-separated. Meetings with these codes use this roster automatically."
+  },
+  "roster_members": {
+    "message": "Members"
+  },
+  "roster_membersHelp": {
+    "message": "One person per line, optionally “Name, email”. Names are matched flexibly (e.g. “Md. Rahim Uddin” matches “Rahim Uddin”)."
+  },
+  "roster_importCsv": {
+    "message": "Import CSV…"
+  },
+  "roster_needMembers": {
+    "message": "Add at least one member"
+  },
+  "roster_untitled": {
+    "message": "Untitled roster"
+  },
+  "settings_sub": {
+    "message": "Preferences are stored locally and apply to all Meet tabs immediately."
+  },
+  "set_recording": {
+    "message": "Recording"
+  },
+  "set_autoSave": {
+    "message": "Auto-save attendance"
+  },
+  "set_autoSaveHelp": {
+    "message": "Save the list to your history automatically during and at the end of each call."
+  },
+  "set_interval": {
+    "message": "Auto-save interval"
+  },
+  "set_intervalHelp": {
+    "message": "Seconds between automatic saves while a call is running."
+  },
+  "set_showButton": {
+    "message": "Show the in-Meet button"
+  },
+  "set_showButtonHelp": {
+    "message": "Floating Attendance button and live panel inside Google Meet."
+  },
+  "set_grace": {
+    "message": "Leave detection delay"
+  },
+  "set_graceHelp": {
+    "message": "Seconds someone must be gone before a leave is recorded."
+  },
+  "set_chat": {
+    "message": "Save meeting chat"
+  },
+  "set_chatHelp": {
+    "message": "Store chat messages (sender, time, text) shown in Meet's chat panel with the meeting."
+  },
+  "set_rules": {
+    "message": "Attendance rules"
+  },
+  "set_late": {
+    "message": "Late after (minutes)"
+  },
+  "set_lateHelp": {
+    "message": "Joining more than this many minutes after the meeting started counts as Late. 0 = off."
+  },
+  "set_minPresence": {
+    "message": "Minimum time to count as present"
+  },
+  "set_minPresenceHelp": {
+    "message": "Less time in the call is marked “Too short”. 0 = off."
+  },
+  "set_minutes": {
+    "message": "minutes"
+  },
+  "set_percent": {
+    "message": "% of meeting"
+  },
+  "set_notifications": {
+    "message": "Notifications"
+  },
+  "set_notify": {
+    "message": "Join & leave pop-ups"
+  },
+  "set_notifyHelp": {
+    "message": "Show a small toast in Meet when someone joins or leaves."
+  },
+  "set_sound": {
+    "message": "Play a sound"
+  },
+  "set_soundHelp": {
+    "message": "A short, quiet beep with each pop-up."
+  },
+  "set_display": {
+    "message": "Display & export"
+  },
+  "set_ignoreSelf": {
+    "message": "Ignore my own name"
+  },
+  "set_ignoreSelfHelp": {
+    "message": "Hide yourself from lists and exports."
+  },
+  "set_selfName": {
+    "message": "My display name"
+  },
+  "set_selfNameHelp": {
+    "message": "Optional. Used to recognise you if Meet doesn't label you as “(You)”."
+  },
+  "set_timeFormat": {
+    "message": "Time format"
+  },
+  "set_timeFormatHelp": {
+    "message": "Used in the dashboard, the in-Meet panel and exported files."
+  },
+  "set_24h": {
+    "message": "24-hour (14:05)"
+  },
+  "set_12h": {
+    "message": "12-hour (2:05 PM)"
+  },
+  "set_theme": {
+    "message": "Theme"
+  },
+  "set_themeHelp": {
+    "message": "Follow the system, or force light or dark."
+  },
+  "theme_system": {
+    "message": "System"
+  },
+  "theme_light": {
+    "message": "Light"
+  },
+  "theme_dark": {
+    "message": "Dark"
+  },
+  "set_language": {
+    "message": "Language"
+  },
+  "set_languageHelp": {
+    "message": "Follows your browser language. Available: English, বাংলা."
+  },
+  "set_shortcuts": {
+    "message": "Keyboard shortcuts"
+  },
+  "set_shortcutUnset": {
+    "message": "not set"
+  },
+  "set_customize": {
+    "message": "Change shortcuts"
+  },
+  "set_customizeHelp": {
+    "message": "Chrome manages extension shortcuts on its own page."
+  },
+  "set_openShortcuts": {
+    "message": "Open shortcut settings"
+  },
+  "set_data": {
+    "message": "Your data"
+  },
+  "set_backup": {
+    "message": "Back up"
+  },
+  "set_backupHelp": {
+    "message": "Download every saved meeting and roster as a JSON file."
+  },
+  "set_exportBackup": {
+    "message": "Export backup"
+  },
+  "set_restore": {
+    "message": "Restore"
+  },
+  "set_restoreHelp": {
+    "message": "Import meetings and rosters from a backup file."
+  },
+  "set_importBackup": {
+    "message": "Import backup"
+  },
+  "set_deleteAll": {
+    "message": "Delete everything"
+  },
+  "set_deleteAllHelp": {
+    "message": "Permanently remove all saved meetings from this browser."
+  },
+  "set_deleteAllBtn": {
+    "message": "Delete all meetings"
+  },
+  "wipe_title": {
+    "message": "Delete all meetings?"
+  },
+  "wipe_body": {
+    "message": "Every saved attendance list will be permanently removed from this browser. This can't be undone."
+  },
+  "privacy_sub": {
+    "message": "Short version: your attendance data never leaves this device."
+  },
+  "privacy_collectedTitle": {
+    "message": "What is collected"
+  },
+  "privacy_c1": {
+    "message": "Display names of people in Google Meet calls you attend, as shown on screen."
+  },
+  "privacy_c2": {
+    "message": "When each person was first and last seen, their time in the call and approximate speaking time."
+  },
+  "privacy_c3": {
+    "message": "The meeting code, title (if visible) and start/end time, plus any tags, notes and rosters you add."
+  },
+  "privacy_c4": {
+    "message": "If enabled, chat messages that Meet shows in its chat panel."
+  },
+  "privacy_storedTitle": {
+    "message": "Where it is stored"
+  },
+  "privacy_stored": {
+    "message": "Only in this browser's extension storage (chrome.storage.local). Uninstalling the extension deletes it."
+  },
+  "privacy_neverTitle": {
+    "message": "What is never done"
+  },
+  "privacy_n1": {
+    "message": "No servers, accounts, analytics, ads or trackers. The extension makes no network requests."
+  },
+  "privacy_n2": {
+    "message": "No audio or video is recorded; speaking time comes from Meet's on-screen speaking indicator."
+  },
+  "privacy_n3": {
+    "message": "Exports (CSV, XLSX, PDF, JSON) are generated locally by code bundled inside the extension."
+  },
+  "privacy_permTitle": {
+    "message": "Permissions"
+  },
+  "privacy_p1": {
+    "message": "storage: save your settings, rosters and attendance history locally."
+  },
+  "privacy_p2": {
+    "message": "meet.google.com content script: read the participant list and chat on Meet pages only."
+  },
+  "privacy_p3": {
+    "message": "Keyboard shortcuts use chrome.commands, which needs no permission."
+  },
+  "privacy_policy": {
+    "message": "Please respect your organisation's policies and local laws when recording attendance."
+  }
+}

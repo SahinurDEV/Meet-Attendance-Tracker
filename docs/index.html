@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Meet Attendance Tracker: automatic, private Google Meet attendance</title>
+  <meta name="description" content="Free Chrome extension that records Google Meet attendance automatically: join/leave times, time in call, speaking time, rosters with Present/Late/Absent, analytics and chat. Export to CSV, Excel, PDF and JSON. 100% local, no account.">
+  <meta property="og:title" content="Meet Attendance Tracker">
+  <meta property="og:description" content="Automatic, private Google Meet attendance. Export CSV, XLSX, PDF. Nothing leaves your device.">
+  <meta property="og:image" content="screenshots/meet-panel.png">
+  <meta name="theme-color" content="#0f766e">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#top"><img src="assets/logo.svg" alt="" width="34" height="34"><span>Meet Attendance <em>Tracker</em></span></a>
+      <nav aria-label="Primary">
+        <a href="#features">Features</a>
+        <a href="#screens">Screenshots</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#install">Install</a>
+        <a href="#privacy">Privacy</a>
+        <a class="btn btn-sm" href="https://github.com/SahinurDEV/Meet-Attendance-Tracker">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="pill">🔒 Free · Open source · 100% local · v2.1</span>
+          <h1>Google Meet attendance that <span class="hl">takes itself</span>.</h1>
+          <p class="lead">A Chrome extension that quietly records who joined your call, when they were first and last seen, how long they stayed and how much they spoke. It marks your class or team list Present, Late or Absent, charts attendance over time, and exports everything to CSV, Excel, PDF or JSON in one click.</p>
+          <div class="cta">
+            <a class="btn btn-primary" href="#install">Install in 1 minute</a>
+            <a class="btn" href="https://github.com/SahinurDEV/Meet-Attendance-Tracker">View source</a>
+          </div>
+          <ul class="ticks">
+            <li>No account, no server</li><li>Manifest V3</li><li>Only the <code>storage</code> permission</li>
+          </ul>
+        </div>
+        <figure class="hero-shot">
+          <img src="screenshots/meet-panel.png" alt="The live Attendance panel inside a Google Meet call" width="1440" height="900">
+        </figure>
+      </div>
+    </section>
+
+    <section class="strip">
+      <div class="container strip-grid">
+        <div><b>Rosters</b><span>Present · Late · Absent</span></div>
+        <div><b>Analytics</b><span>per person &amp; per series</span></div>
+        <div><b>5 formats</b><span>CSV · XLSX · PDF · JSON · copy</span></div>
+        <div><b>0 bytes</b><span>sent anywhere</span></div>
+      </div>
+    </section>
+
+    <section id="features" class="section">
+      <div class="container">
+        <h2 class="h2">Everything you need to take attendance</h2>
+        <p class="sub">Built for teachers, team leads and anyone who needs to know who was really there.</p>
+        <div class="features">
+          <article class="feature"><div class="ic">⚡</div><h3>Automatic &amp; manual save</h3><p>Saved automatically while the call runs and when it ends. Prefer control? Turn auto-save off and hit <em>Save now</em> (or <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd>).</p></article>
+          <article class="feature"><div class="ic">⏱️</div><h3>Accurate timing</h3><p><b>First seen</b>, <b>last seen</b> and <b>time in call</b> for everyone. Leaves and rejoins become separate sessions, and gaps aren't counted.</p></article>
+          <article class="feature"><div class="ic">🎙️</div><h3>Speaking time</h3><p>Uses Meet's own on-screen speaking indicator to estimate how long each person talked. No audio is ever processed.</p></article>
+          <article class="feature"><div class="ic">📋</div><h3>Rosters: who's missing</h3><p>Paste names or import a CSV of expected attendees, link it to a meeting code and see <b>Present / Late / Absent</b> live in Meet, in the dashboard and in every export.</p></article>
+          <article class="feature"><div class="ic">✅</div><h3>Attendance rules</h3><p>Set a <b>late threshold</b> and a <b>minimum time in call</b> (minutes or % of the meeting). Short visits are flagged <em>Too short</em>.</p></article>
+          <article class="feature"><div class="ic">📈</div><h3>Analytics</h3><p>Per-person attendance rate, average time, speaking total and trend, plus attendance-over-time, top speakers and speaking-share charts.</p></article>
+          <article class="feature"><div class="ic">🔁</div><h3>Recurring meetings</h3><p>Meetings with the same code are grouped into a series with a who-came-when matrix you can export to Excel or CSV.</p></article>
+          <article class="feature"><div class="ic">💬</div><h3>Chat capture</h3><p>Messages shown in Meet's chat panel are saved with the meeting and exported (CSV, Excel sheet, PDF, JSON).</p></article>
+          <article class="feature"><div class="ic">🔔</div><h3>Join &amp; leave alerts</h3><p>Small pop-ups in Meet when someone joins, rejoins or leaves, with an optional quiet sound.</p></article>
+          <article class="feature"><div class="ic">🏷️</div><h3>Tags &amp; notes</h3><p>Add tags and notes to any meeting, filter your history by tag and export a tag or date range in bulk.</p></article>
+          <article class="feature"><div class="ic">📁</div><h3>Every export you need</h3><p>CSV, Excel (status-coloured), branded PDF with summary stats, JSON, chat CSV and <em>copy as table</em> for Google Sheets. All encoders are bundled; nothing comes from a CDN.</p></article>
+          <article class="feature"><div class="ic">অ</div><h3>Bengali &amp; any script</h3><p>Names in Bengali, Arabic, CJK and more render correctly in PDFs. The interface is available in English and বাংলা.</p></article>
+          <article class="feature"><div class="ic">🌙</div><h3>Dark mode</h3><p>Follows your system theme by default, or force light or dark. Works in Meet, the popup and the dashboard.</p></article>
+          <article class="feature"><div class="ic">⌨️</div><h3>Keyboard shortcuts</h3><p><kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd> toggles the panel, <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd> saves now. Change them in Chrome's shortcut settings.</p></article>
+          <article class="feature"><div class="ic">🛡️</div><h3>Robust detection</h3><p>Several detection strategies plus a MutationObserver keep it working as Meet's layout changes, and short UI glitches are smoothed out.</p></article>
+          <article class="feature"><div class="ic">🔒</div><h3>Private by design</h3><p>Only the <code>storage</code> permission. No servers, no accounts, no analytics. Back up or wipe your data any time.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="screens" class="section alt">
+      <div class="container">
+        <h2 class="h2">See it in action</h2>
+        <p class="sub">Real screenshots from the extension's automated test suite.</p>
+        <div class="shots">
+          <figure class="shot wide"><img loading="lazy" src="screenshots/dashboard.png" alt="Dashboard with meeting history, tags, absentee counts and statistics"><figcaption>Dashboard: history with tag filter, absentees and bulk export</figcaption></figure>
+          <figure class="shot wide"><img loading="lazy" src="screenshots/meeting-detail.png" alt="Meeting detail with roster, statuses, tags, notes and timeline"><figcaption>Meeting details: roster statuses, tags, notes, timeline</figcaption></figure>
+          <figure class="shot wide"><img loading="lazy" src="screenshots/analytics.png" alt="Analytics with attendance over time chart"><figcaption>Analytics: attendance over time, top speakers, speaking share</figcaption></figure>
+          <figure class="shot wide"><img loading="lazy" src="screenshots/series.png" alt="Recurring meeting series matrix"><figcaption>Series: who attended which session, exportable to Excel</figcaption></figure>
+          <figure class="shot wide"><img loading="lazy" src="screenshots/person.png" alt="Per-person attendance history with trend chart"><figcaption>Person history: rate, average time, trend</figcaption></figure>
+          <figure class="shot wide"><img loading="lazy" src="screenshots/roster-editor.png" alt="Roster editor with pasted names and CSV import"><figcaption>Rosters: paste names or import a CSV</figcaption></figure>
+          <figure class="shot tall"><img loading="lazy" src="screenshots/popup.png" alt="Extension popup showing a live meeting with expected attendees"><figcaption>Popup: live call, expected attendees, quick settings</figcaption></figure>
+          <figure class="shot tall"><img loading="lazy" src="screenshots/export-pdf.png" alt="Branded PDF attendance report with Bengali names and summary"><figcaption>Branded PDF with summary stats (Bengali names included)</figcaption></figure>
+          <figure class="shot wide"><img loading="lazy" src="screenshots/dark-dashboard.png" alt="Dashboard in dark mode"><figcaption>Dark mode follows your system</figcaption></figure>
+          <figure class="shot wide"><img loading="lazy" src="screenshots/dark-meet-panel.png" alt="In-Meet panel in dark mode with a join notification"><figcaption>In-Meet panel in dark mode, with join/leave pop-ups</figcaption></figure>
+          <figure class="shot wide"><img loading="lazy" src="screenshots/settings.png" alt="Settings page"><figcaption>Settings: rules, notifications, theme, shortcuts, backups</figcaption></figure>
+          <figure class="shot wide"><img loading="lazy" src="screenshots/dark-analytics.png" alt="Analytics in dark mode"><figcaption>Analytics in dark mode</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="how" class="section">
+      <div class="container">
+        <h2 class="h2">How it works</h2>
+        <ol class="steps">
+          <li><span>1</span><h3>Join a Meet call</h3><p>Tracking starts on its own as soon as participants appear.</p></li>
+          <li><span>2</span><h3>Watch it live</h3><p>Open the Attendance panel in Meet or the toolbar popup at any time.</p></li>
+          <li><span>3</span><h3>Export or review</h3><p>Download CSV, XLSX, PDF or JSON, or explore history, rosters and analytics in the dashboard.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="roadmap" class="section">
+      <div class="container">
+        <h2 class="h2">Roadmap: coming soon</h2>
+        <p class="sub"><b>Planned, not built yet.</b> None of these are in the current version. Cloud features would be strictly opt-in, and local-only stays the default.</p>
+        <div class="roadmap">
+          <article class="plan"><span class="badge-planned">Planned</span><h3>Google Sheets / Drive sync</h3><p>Optional, opt-in export of attendance straight to a Sheet or Drive folder.</p></article>
+          <article class="plan"><span class="badge-planned">Planned</span><h3>Google Classroom integration</h3><p>Import class rosters and post attendance back to Classroom.</p></article>
+          <article class="plan"><span class="badge-planned">Planned</span><h3>Microsoft Teams &amp; Zoom</h3><p>The same tracker for Teams and Zoom web meetings.</p></article>
+          <article class="plan"><span class="badge-planned">Planned</span><h3>Team / org workspace</h3><p>Shared rosters and reports for schools and teams.</p></article>
+          <article class="plan"><span class="badge-planned">Planned</span><h3>Scheduled email reports</h3><p>Weekly attendance summaries in your inbox.</p></article>
+          <article class="plan"><span class="badge-planned">Planned</span><h3>AI meeting summaries</h3><p>Optional summaries from captured chat and notes.</p></article>
+          <article class="plan"><span class="badge-planned">Planned</span><h3>Firefox &amp; Edge builds</h3><p>Packaged builds for Firefox Add-ons and the Edge store.</p></article>
+          <article class="plan"><span class="badge-planned">Planned</span><h3>Chrome Web Store listing</h3><p>One-click install instead of loading it unpacked.</p></article>
+          <article class="plan"><span class="badge-planned">Planned</span><h3>Mobile-friendly report viewer</h3><p>Read exported reports comfortably on a phone.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="install" class="section alt">
+      <div class="container install">
+        <div>
+          <h2 class="h2 left">Install (load unpacked)</h2>
+          <p class="sub left">Works in Chrome, Edge, Brave and other Chromium browsers (v110+).</p>
+          <ol class="install-steps">
+            <li>Download the code: <a href="https://github.com/SahinurDEV/Meet-Attendance-Tracker/archive/refs/heads/feature/full-extension.zip">ZIP</a> or <code>git clone -b feature/full-extension https://github.com/SahinurDEV/Meet-Attendance-Tracker</code>, then unzip it.</li>
+            <li>Open <code>chrome://extensions</code>.</li>
+            <li>Switch on <b>Developer mode</b> (top-right).</li>
+            <li>Click <b>Load unpacked</b> and choose the <code>extension/</code> folder.</li>
+            <li>Pin <b>Meet Attendance Tracker</b> from the puzzle-piece menu and join a call.</li>
+          </ol>
+        </div>
+        <div class="code-card">
+          <div class="code-head"><i></i><i></i><i></i><span>terminal</span></div>
+<pre><code><span class="c"># build a store-ready zip</span>
+git clone -b feature/full-extension https://github.com/SahinurDEV/Meet-Attendance-Tracker
+cd Meet-Attendance-Tracker
+npm install
+npm test          <span class="c"># unit + browser tests</span>
+npm run package   <span class="c"># → dist/meet-attendance-tracker-v2.1.0.zip</span></code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section id="privacy" class="section">
+      <div class="container privacy">
+        <div class="privacy-badge">🔒</div>
+        <div>
+          <h2 class="h2 left">Private by design</h2>
+          <ul class="checks">
+            <li><b>Stored locally.</b> Attendance lives in your browser's extension storage and nowhere else.</li>
+            <li><b>No network requests.</b> No servers, accounts, analytics, ads or third-party scripts.</li>
+            <li><b>No audio or video.</b> Only names, on-screen indicators and chat messages that Meet already shows you are read.</li>
+            <li><b>Minimal permissions.</b> Just <code>storage</code>, plus a content script on <code>meet.google.com</code>. Keyboard shortcuts and themes need no extra permissions.</li>
+            <li><b>You're in control.</b> Delete one meeting or everything, or back up to a JSON file.</li>
+          </ul>
+          <p class="note">Please follow your organisation's policies and local laws when recording attendance.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt">
+      <div class="container faq">
+        <h2 class="h2">FAQ</h2>
+        <details><summary>Do other participants need the extension?</summary><p>No. Only the person taking attendance installs it.</p></details>
+        <details><summary>Is speaking time exact?</summary><p>It's a close estimate from Meet's on-screen speaking indicator, sampled about once a second. Meet sometimes shows only some tiles, so open the People panel for the most complete list.</p></details>
+        <details><summary>What happens if I reload the Meet tab?</summary><p>The same meeting is resumed, so you won't get a duplicate.</p></details>
+        <details><summary>How does the roster decide who is absent?</summary><p>Names are matched flexibly: exact names, aliases, reordered names and honorifics such as "Md." all match. Anyone on the roster who never appears is Absent, people joining after your late threshold are Late, and people below the minimum time are marked Too short.</p></details>
+        <details><summary>Is the chat saved?</summary><p>Messages are saved only while Meet's chat panel has shown them. You can turn chat capture off in Settings.</p></details>
+        <details><summary>Does it work with Google Workspace accounts?</summary><p>Yes, it works with any account that can open meet.google.com in a Chromium browser.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="container foot-inner">
+      <span><img src="assets/logo.svg" alt="" width="22" height="22"> Meet Attendance Tracker · MIT License</span>
+      <span>Not affiliated with Google. Google Meet is a trademark of Google LLC.</span>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,821 @@
+{
+  "extName": {
+    "message": "মিট অ্যাটেনডেন্স ট্র্যাকার"
+  },
+  "extShortName": {
+    "message": "উপস্থিতি"
+  },
+  "extDescription": {
+    "message": "স্বয়ংক্রিয় Google Meet উপস্থিতি: যোগদান/প্রস্থান, কথা বলার সময়, রোস্টার, বিশ্লেষণ। CSV, XLSX, PDF এক্সপোর্ট। ১০০% লোকাল।"
+  },
+  "cmdTogglePanel": {
+    "message": "Meet-এ উপস্থিতি প্যানেল দেখান বা লুকান"
+  },
+  "cmdSaveNow": {
+    "message": "এখনই উপস্থিতি সংরক্ষণ করুন"
+  },
+  "appShortTitle": {
+    "message": "মিট অ্যাটেনডেন্স"
+  },
+  "nav_dashboard": {
+    "message": "ড্যাশবোর্ড"
+  },
+  "nav_meetings": {
+    "message": "মিটিং"
+  },
+  "nav_analytics": {
+    "message": "বিশ্লেষণ"
+  },
+  "nav_series": {
+    "message": "সিরিজ"
+  },
+  "nav_rosters": {
+    "message": "রোস্টার"
+  },
+  "nav_settings": {
+    "message": "সেটিংস"
+  },
+  "nav_privacy": {
+    "message": "গোপনীয়তা"
+  },
+  "side_localOnly": {
+    "message": "সব ডেটা শুধু এই ব্রাউজারেই সংরক্ষিত।"
+  },
+  "side_used": {
+    "message": "$1 KB ব্যবহৃত"
+  },
+  "panel_title": {
+    "message": "উপস্থিতি"
+  },
+  "panel_close": {
+    "message": "উপস্থিতি প্যানেল বন্ধ করুন"
+  },
+  "panel_search": {
+    "message": "অংশগ্রহণকারী খুঁজুন…"
+  },
+  "panel_waiting": {
+    "message": "কল শুরুর অপেক্ষায়…"
+  },
+  "panel_empty": {
+    "message": "এখনও কোনো অংশগ্রহণকারী শনাক্ত হয়নি। দ্রুত শনাক্তের জন্য Meet-এর People প্যানেল খুলুন।"
+  },
+  "panel_noMatch": {
+    "message": "আপনার অনুসন্ধানের সাথে কেউ মেলেনি।"
+  },
+  "panel_inCall": {
+    "message": "কলে আছেন"
+  },
+  "panel_leftAt": {
+    "message": "চলে গেছেন $1"
+  },
+  "panel_joinedAt": {
+    "message": "যোগ দিয়েছেন $1"
+  },
+  "panel_joins": {
+    "message": "$1 বার যোগদান"
+  },
+  "panel_notHere": {
+    "message": "এখনও আসেননি"
+  },
+  "panel_notJoined": {
+    "message": "যোগ দেননি"
+  },
+  "panel_autosaveOn": {
+    "message": "অটো-সেভ চালু"
+  },
+  "panel_autosaveOff": {
+    "message": "অটো-সেভ বন্ধ"
+  },
+  "panel_autosaveOffHint": {
+    "message": "অটো-সেভ বন্ধ · এখনই সংরক্ষণ করুন"
+  },
+  "panel_savedJustNow": {
+    "message": "এইমাত্র সংরক্ষিত"
+  },
+  "panel_savedAgo": {
+    "message": "$1 সেকেন্ড আগে সংরক্ষিত"
+  },
+  "stat_inCall": {
+    "message": "কলে"
+  },
+  "stat_totalSeen": {
+    "message": "মোট দেখা গেছে"
+  },
+  "stat_expected": {
+    "message": "প্রত্যাশিত"
+  },
+  "stat_duration": {
+    "message": "সময়কাল"
+  },
+  "stat_uniquePeople": {
+    "message": "স্বতন্ত্র ব্যক্তি"
+  },
+  "stat_totalMeetingTime": {
+    "message": "মোট মিটিং সময়"
+  },
+  "stat_avgAttendance": {
+    "message": "গড় উপস্থিতি"
+  },
+  "stat_perMeeting": {
+    "message": "প্রতি মিটিংয়ে"
+  },
+  "stat_avgRate": {
+    "message": "গড় উপস্থিতির হার"
+  },
+  "stat_attendance": {
+    "message": "উপস্থিতি"
+  },
+  "stat_participants": {
+    "message": "অংশগ্রহণকারী"
+  },
+  "stat_avgTimeInCall": {
+    "message": "কলে গড় সময়"
+  },
+  "stat_totalSpeaking": {
+    "message": "মোট কথা বলা"
+  },
+  "status_present": {
+    "message": "উপস্থিত"
+  },
+  "status_late": {
+    "message": "দেরিতে"
+  },
+  "status_short": {
+    "message": "খুব কম সময়"
+  },
+  "status_absent": {
+    "message": "অনুপস্থিত"
+  },
+  "status_guestSuffix": {
+    "message": "(অতিথি)"
+  },
+  "tag_you": {
+    "message": "আপনি"
+  },
+  "tag_guest": {
+    "message": "অতিথি"
+  },
+  "notify_joined": {
+    "message": "$1 যোগ দিয়েছেন"
+  },
+  "notify_rejoined": {
+    "message": "$1 আবার যোগ দিয়েছেন"
+  },
+  "notify_left": {
+    "message": "$1 চলে গেছেন"
+  },
+  "btn_saveNow": {
+    "message": "এখনই সংরক্ষণ"
+  },
+  "btn_copyTable": {
+    "message": "টেবিল হিসেবে কপি"
+  },
+  "btn_chatCsv": {
+    "message": "চ্যাট CSV"
+  },
+  "btn_openDashboard": {
+    "message": "ড্যাশবোর্ড খুলুন"
+  },
+  "btn_delete": {
+    "message": "মুছুন"
+  },
+  "btn_cancel": {
+    "message": "বাতিল"
+  },
+  "btn_view": {
+    "message": "দেখুন"
+  },
+  "btn_edit": {
+    "message": "সম্পাদনা"
+  },
+  "btn_save": {
+    "message": "সংরক্ষণ"
+  },
+  "btn_export": {
+    "message": "এক্সপোর্ট"
+  },
+  "btn_bulkExport": {
+    "message": "একসাথে এক্সপোর্ট…"
+  },
+  "btn_gotIt": {
+    "message": "বুঝেছি"
+  },
+  "toast_saved": {
+    "message": "উপস্থিতি সংরক্ষিত হয়েছে"
+  },
+  "toast_noParticipants": {
+    "message": "এখনও কোনো অংশগ্রহণকারী শনাক্ত হয়নি"
+  },
+  "toast_nothingToExport": {
+    "message": "এক্সপোর্ট করার মতো কিছু নেই"
+  },
+  "toast_exported": {
+    "message": "এক্সপোর্ট হয়েছে $1"
+  },
+  "toast_downloaded": {
+    "message": "ডাউনলোড হয়েছে $1"
+  },
+  "toast_copied": {
+    "message": "কপি হয়েছে। Google Sheets বা Excel-এ পেস্ট করুন"
+  },
+  "toast_copyFailed": {
+    "message": "ক্লিপবোর্ডে কপি করা যায়নি"
+  },
+  "toast_deleted": {
+    "message": "মুছে ফেলা হয়েছে"
+  },
+  "toast_deletedN": {
+    "message": "$1টি মিটিং মুছে ফেলা হয়েছে"
+  },
+  "toast_settingsSaved": {
+    "message": "সেটিংস সংরক্ষিত"
+  },
+  "toast_tagsSaved": {
+    "message": "ট্যাগ সংরক্ষিত"
+  },
+  "toast_notesSaved": {
+    "message": "নোট সংরক্ষিত"
+  },
+  "toast_titleSaved": {
+    "message": "শিরোনাম হালনাগাদ হয়েছে"
+  },
+  "toast_rosterSaved": {
+    "message": "রোস্টার সংরক্ষিত"
+  },
+  "toast_imported": {
+    "message": "$1টি মিটিং ইমপোর্ট হয়েছে"
+  },
+  "toast_badBackup": {
+    "message": "ফাইলটি সঠিক ব্যাকআপ নয়"
+  },
+  "chip_live": {
+    "message": "লাইভ"
+  },
+  "popup_tracker": {
+    "message": "ট্র্যাকার"
+  },
+  "popup_localOnly": {
+    "message": "শুধু লোকাল"
+  },
+  "popup_localOnlyTitle": {
+    "message": "আপনার ডিভাইস থেকে কিছুই বাইরে যায় না"
+  },
+  "popup_notInCall": {
+    "message": "Google Meet কলে নেই"
+  },
+  "popup_notInCallHelp": {
+    "message": "meet.google.com-এ কলে যোগ দিন, উপস্থিতি স্বয়ংক্রিয়ভাবে রেকর্ড হবে। Meet-এর নিচে ডান কোণে Attendance বোতামটি দেখুন।"
+  },
+  "popup_started": {
+    "message": "শুরু $1"
+  },
+  "popup_recent": {
+    "message": "সাম্প্রতিক মিটিং"
+  },
+  "popup_viewAll": {
+    "message": "সব দেখুন"
+  },
+  "popup_noSaved": {
+    "message": "এখনও কোনো মিটিং সংরক্ষিত হয়নি।"
+  },
+  "popup_autoSaveHelp": {
+    "message": "কল চলাকালীন উপস্থিতি সংরক্ষণ"
+  },
+  "popup_ignoreSelfHelp": {
+    "message": "তালিকা ও এক্সপোর্টে নিজেকে লুকান"
+  },
+  "welcome_title": {
+    "message": "মিট অ্যাটেনডেন্স ট্র্যাকারে স্বাগতম 👋"
+  },
+  "welcome_body": {
+    "message": "যেকোনো Google Meet কলে যোগ দিন: উপস্থিতি স্বয়ংক্রিয়ভাবে রেকর্ড হয়ে এখানে সংরক্ষিত হবে। সবকিছু এই ডিভাইসেই থাকে।"
+  },
+  "meetings_sub": {
+    "message": "আপনার উপস্থিতির ইতিহাস, এই ব্রাউজারে লোকালি সংরক্ষিত।"
+  },
+  "meetings_search": {
+    "message": "মিটিং, কোড, তারিখ, ট্যাগ বা অংশগ্রহণকারী দিয়ে খুঁজুন…"
+  },
+  "meetings_searchAria": {
+    "message": "মিটিং খুঁজুন"
+  },
+  "meetings_sort": {
+    "message": "মিটিং সাজান"
+  },
+  "meetings_filterByTag": {
+    "message": "ট্যাগ দিয়ে ফিল্টার"
+  },
+  "meetings_allTags": {
+    "message": "সব"
+  },
+  "meetings_noMatch": {
+    "message": "আপনার ফিল্টারের সাথে কোনো মিটিং মেলেনি।"
+  },
+  "meetings_empty": {
+    "message": "এখনও কোনো মিটিং নেই। Google Meet কলে যোগ দিলে উপস্থিতির তালিকা এখানে দেখাবে।"
+  },
+  "meetings_absentCount": {
+    "message": "$1 জন অনুপস্থিত"
+  },
+  "sort_newest": {
+    "message": "নতুন আগে"
+  },
+  "sort_oldest": {
+    "message": "পুরনো আগে"
+  },
+  "sort_people": {
+    "message": "সর্বাধিক অংশগ্রহণকারী"
+  },
+  "sort_longest": {
+    "message": "দীর্ঘতম"
+  },
+  "col_meeting": {
+    "message": "মিটিং"
+  },
+  "col_date": {
+    "message": "তারিখ"
+  },
+  "col_duration": {
+    "message": "সময়কাল"
+  },
+  "col_people": {
+    "message": "ব্যক্তি"
+  },
+  "col_saved": {
+    "message": "সংরক্ষণ"
+  },
+  "col_name": {
+    "message": "নাম"
+  },
+  "col_status": {
+    "message": "অবস্থা"
+  },
+  "col_firstSeen": {
+    "message": "প্রথম দেখা"
+  },
+  "col_lastSeen": {
+    "message": "শেষ দেখা"
+  },
+  "col_timeInCall": {
+    "message": "কলে সময়"
+  },
+  "col_speaking": {
+    "message": "কথা বলা"
+  },
+  "col_timeline": {
+    "message": "উপস্থিতির টাইমলাইন"
+  },
+  "col_attended": {
+    "message": "উপস্থিত ছিলেন"
+  },
+  "col_rate": {
+    "message": "উপস্থিতির হার"
+  },
+  "col_avgTime": {
+    "message": "গড় সময়"
+  },
+  "saved_not": {
+    "message": "সংরক্ষিত নয়"
+  },
+  "saved_manual": {
+    "message": "ম্যানুয়াল"
+  },
+  "saved_auto": {
+    "message": "অটো"
+  },
+  "bulk_help": {
+    "message": "অনেক মিটিং একটি ফাইলে এক্সপোর্ট করুন। XLSX-এ একটি সারাংশ শিট ও প্রতিটি মিটিংয়ের আলাদা শিট থাকে।"
+  },
+  "bulk_from": {
+    "message": "থেকে"
+  },
+  "bulk_to": {
+    "message": "পর্যন্ত"
+  },
+  "bulk_tag": {
+    "message": "ট্যাগ"
+  },
+  "bulk_format": {
+    "message": "ফরম্যাট"
+  },
+  "bulk_xlsx": {
+    "message": "এক্সেল ওয়ার্কবুক (.xlsx)"
+  },
+  "bulk_csv": {
+    "message": "সম্মিলিত CSV"
+  },
+  "bulk_json": {
+    "message": "JSON"
+  },
+  "bulk_count": {
+    "message": "$1টি মিটিং নির্বাচিত"
+  },
+  "bulk_none": {
+    "message": "এই সময়সীমায় কোনো মিটিং নেই"
+  },
+  "delete_title": {
+    "message": "এই মিটিং মুছবেন?"
+  },
+  "delete_body": {
+    "message": "$2 তারিখের “$1” এই ডিভাইস থেকে স্থায়ীভাবে মুছে যাবে।"
+  },
+  "back_meetings": {
+    "message": "সব মিটিং"
+  },
+  "detail_missing": {
+    "message": "এই মিটিং আর নেই।"
+  },
+  "detail_titleAria": {
+    "message": "মিটিংয়ের শিরোনাম"
+  },
+  "detail_roster": {
+    "message": "রোস্টার (প্রত্যাশিত উপস্থিতি)"
+  },
+  "detail_inCallNow": {
+    "message": "এখন কলে"
+  },
+  "detail_session": {
+    "message": "$1টি সেশন"
+  },
+  "detail_sessions": {
+    "message": "$1টি সেশন"
+  },
+  "detail_timelineTitle": {
+    "message": "মিটিং জুড়ে কলে থাকার সময়"
+  },
+  "detail_noParticipants": {
+    "message": "কোনো অংশগ্রহণকারী রেকর্ড হয়নি।"
+  },
+  "detail_now": {
+    "message": "এখন"
+  },
+  "detail_openInMeet": {
+    "message": "Meet-এ খুলুন"
+  },
+  "detail_seriesLink": {
+    "message": "এই মিটিং কোডের সব সেশন"
+  },
+  "roster_auto": {
+    "message": "স্বয়ংক্রিয় (মিটিং কোড অনুযায়ী)"
+  },
+  "roster_none": {
+    "message": "কোনো রোস্টার নয়"
+  },
+  "tags_label": {
+    "message": "ট্যাগ"
+  },
+  "tags_add": {
+    "message": "ট্যাগ লিখে Enter চাপুন"
+  },
+  "tags_remove": {
+    "message": "$1 ট্যাগ সরান"
+  },
+  "notes_label": {
+    "message": "নোট"
+  },
+  "notes_placeholder": {
+    "message": "আলোচ্যসূচি, সিদ্ধান্ত, পরবর্তী কাজ…"
+  },
+  "chat_title": {
+    "message": "চ্যাট"
+  },
+  "analytics_sub": {
+    "message": "আপনার মিটিংগুলোর উপস্থিতি ও অংশগ্রহণ।"
+  },
+  "analytics_range": {
+    "message": "সময়সীমা"
+  },
+  "range_7": {
+    "message": "গত ৭ দিন"
+  },
+  "range_30": {
+    "message": "গত ৩০ দিন"
+  },
+  "range_90": {
+    "message": "গত ৯০ দিন"
+  },
+  "range_all": {
+    "message": "সব সময়"
+  },
+  "analytics_attendanceOverTime": {
+    "message": "সময়ের সাথে উপস্থিতি"
+  },
+  "analytics_topSpeakers": {
+    "message": "শীর্ষ বক্তা"
+  },
+  "analytics_speakingShare": {
+    "message": "কথা বলার অংশ"
+  },
+  "analytics_noSpeaking": {
+    "message": "এই সময়সীমায় কোনো কথা বলার সময় রেকর্ড হয়নি।"
+  },
+  "analytics_empty": {
+    "message": "এই সময়সীমায় এখনও কোনো মিটিং নেই।"
+  },
+  "person_sub": {
+    "message": "প্রত্যাশিত $2টির মধ্যে $1টি মিটিংয়ে উপস্থিত"
+  },
+  "person_trend": {
+    "message": "প্রতি মিটিংয়ে কলে সময় (মিনিট)"
+  },
+  "person_lateAbsent": {
+    "message": "দেরি / অনুপস্থিত"
+  },
+  "person_missing": {
+    "message": "এই ব্যক্তির কোনো তথ্য নেই।"
+  },
+  "series_sub": {
+    "message": "পুনরাবৃত্ত মিটিং একই Meet কোড ব্যবহার করে। কে কোন সেশনে ছিলেন দেখতে একটি সিরিজ খুলুন।"
+  },
+  "series_sessions": {
+    "message": "সেশন"
+  },
+  "series_range": {
+    "message": "প্রথম → শেষ"
+  },
+  "series_recurring": {
+    "message": "পুনরাবৃত্ত"
+  },
+  "series_missing": {
+    "message": "এই কোডের কোনো মিটিং নেই।"
+  },
+  "series_detailSub": {
+    "message": "মিটিং কোড $1 · $2টি সেশন"
+  },
+  "rosters_sub": {
+    "message": "কোনো ক্লাস বা দলের প্রত্যাশিত উপস্থিতি। রোস্টারকে মিটিং কোডের সাথে যুক্ত করলে স্বয়ংক্রিয়ভাবে উপস্থিত, দেরিতে বা অনুপস্থিত চিহ্নিত হবে।"
+  },
+  "rosters_new": {
+    "message": "নতুন রোস্টার"
+  },
+  "rosters_edit": {
+    "message": "রোস্টার সম্পাদনা"
+  },
+  "rosters_members": {
+    "message": "$1 জন সদস্য"
+  },
+  "rosters_noCodes": {
+    "message": "কোনো মিটিং কোডের সাথে যুক্ত নয়"
+  },
+  "rosters_empty": {
+    "message": "এখনও কোনো রোস্টার নেই। নাম পেস্ট করে বা CSV ইমপোর্ট করে তৈরি করুন।"
+  },
+  "rosters_deleteTitle": {
+    "message": "রোস্টার মুছবেন?"
+  },
+  "rosters_deleteBody": {
+    "message": "“$1” মুছে যাবে। সংরক্ষিত মিটিং থাকবে।"
+  },
+  "rosters_imported": {
+    "message": "$1টি নাম ইমপোর্ট হয়েছে"
+  },
+  "roster_name": {
+    "message": "নাম"
+  },
+  "roster_namePh": {
+    "message": "যেমন: CSE-301 সেকশন A"
+  },
+  "roster_codes": {
+    "message": "যুক্ত মিটিং কোড"
+  },
+  "roster_codesHelp": {
+    "message": "কমা দিয়ে আলাদা করুন। এই কোডের মিটিংগুলো স্বয়ংক্রিয়ভাবে এই রোস্টার ব্যবহার করবে।"
+  },
+  "roster_members": {
+    "message": "সদস্য"
+  },
+  "roster_membersHelp": {
+    "message": "প্রতি লাইনে একজন, চাইলে “নাম, ইমেইল”। নাম নমনীয়ভাবে মেলানো হয় (যেমন “Md. Rahim Uddin” ও “Rahim Uddin”)।"
+  },
+  "roster_importCsv": {
+    "message": "CSV ইমপোর্ট…"
+  },
+  "roster_needMembers": {
+    "message": "অন্তত একজন সদস্য যোগ করুন"
+  },
+  "roster_untitled": {
+    "message": "নামহীন রোস্টার"
+  },
+  "settings_sub": {
+    "message": "পছন্দগুলো লোকালি সংরক্ষিত হয় এবং সব Meet ট্যাবে সঙ্গে সঙ্গে প্রযোজ্য হয়।"
+  },
+  "set_recording": {
+    "message": "রেকর্ডিং"
+  },
+  "set_autoSave": {
+    "message": "উপস্থিতি অটো-সেভ"
+  },
+  "set_autoSaveHelp": {
+    "message": "প্রতিটি কল চলাকালীন ও শেষে তালিকা স্বয়ংক্রিয়ভাবে ইতিহাসে সংরক্ষণ।"
+  },
+  "set_interval": {
+    "message": "অটো-সেভের ব্যবধান"
+  },
+  "set_intervalHelp": {
+    "message": "কল চলাকালীন স্বয়ংক্রিয় সংরক্ষণের মধ্যে সেকেন্ড।"
+  },
+  "set_showButton": {
+    "message": "Meet-এ বোতাম দেখান"
+  },
+  "set_showButtonHelp": {
+    "message": "Google Meet-এর ভেতরে ভাসমান Attendance বোতাম ও লাইভ প্যানেল।"
+  },
+  "set_grace": {
+    "message": "প্রস্থান শনাক্তের বিলম্ব"
+  },
+  "set_graceHelp": {
+    "message": "প্রস্থান রেকর্ডের আগে কতক্ষণ অনুপস্থিত থাকতে হবে (সেকেন্ড)।"
+  },
+  "set_chat": {
+    "message": "মিটিং চ্যাট সংরক্ষণ"
+  },
+  "set_chatHelp": {
+    "message": "Meet-এর চ্যাট প্যানেলে দেখানো বার্তা (প্রেরক, সময়, লেখা) মিটিংয়ের সাথে সংরক্ষণ।"
+  },
+  "set_rules": {
+    "message": "উপস্থিতির নিয়ম"
+  },
+  "set_late": {
+    "message": "দেরি ধরা হবে (মিনিট পরে)"
+  },
+  "set_lateHelp": {
+    "message": "মিটিং শুরুর এত মিনিট পরে যোগ দিলে দেরি ধরা হবে। ০ = বন্ধ।"
+  },
+  "set_minPresence": {
+    "message": "উপস্থিত ধরার ন্যূনতম সময়"
+  },
+  "set_minPresenceHelp": {
+    "message": "এর চেয়ে কম সময় থাকলে “খুব কম সময়” চিহ্নিত হবে। ০ = বন্ধ।"
+  },
+  "set_minutes": {
+    "message": "মিনিট"
+  },
+  "set_percent": {
+    "message": "মিটিংয়ের %"
+  },
+  "set_notifications": {
+    "message": "বিজ্ঞপ্তি"
+  },
+  "set_notify": {
+    "message": "যোগদান ও প্রস্থানের পপ-আপ"
+  },
+  "set_notifyHelp": {
+    "message": "কেউ যোগ দিলে বা চলে গেলে Meet-এ ছোট বার্তা দেখান।"
+  },
+  "set_sound": {
+    "message": "শব্দ বাজান"
+  },
+  "set_soundHelp": {
+    "message": "প্রতিটি পপ-আপের সাথে ছোট মৃদু শব্দ।"
+  },
+  "set_display": {
+    "message": "প্রদর্শন ও এক্সপোর্ট"
+  },
+  "set_ignoreSelf": {
+    "message": "নিজের নাম বাদ দিন"
+  },
+  "set_ignoreSelfHelp": {
+    "message": "তালিকা ও এক্সপোর্ট থেকে নিজেকে লুকান।"
+  },
+  "set_selfName": {
+    "message": "আমার প্রদর্শিত নাম"
+  },
+  "set_selfNameHelp": {
+    "message": "ঐচ্ছিক। Meet আপনাকে “(You)” না দেখালে চিনতে সাহায্য করে।"
+  },
+  "set_timeFormat": {
+    "message": "সময়ের ফরম্যাট"
+  },
+  "set_timeFormatHelp": {
+    "message": "ড্যাশবোর্ড, Meet প্যানেল ও এক্সপোর্টে ব্যবহৃত।"
+  },
+  "set_24h": {
+    "message": "২৪ ঘণ্টা (14:05)"
+  },
+  "set_12h": {
+    "message": "১২ ঘণ্টা (2:05 PM)"
+  },
+  "set_theme": {
+    "message": "থিম"
+  },
+  "set_themeHelp": {
+    "message": "সিস্টেম অনুসরণ করুন, বা লাইট/ডার্ক বেছে নিন।"
+  },
+  "theme_system": {
+    "message": "সিস্টেম"
+  },
+  "theme_light": {
+    "message": "লাইট"
+  },
+  "theme_dark": {
+    "message": "ডার্ক"
+  },
+  "set_language": {
+    "message": "ভাষা"
+  },
+  "set_languageHelp": {
+    "message": "আপনার ব্রাউজারের ভাষা অনুসরণ করে। উপলব্ধ: English, বাংলা।"
+  },
+  "set_shortcuts": {
+    "message": "কীবোর্ড শর্টকাট"
+  },
+  "set_shortcutUnset": {
+    "message": "সেট করা নেই"
+  },
+  "set_customize": {
+    "message": "শর্টকাট পরিবর্তন"
+  },
+  "set_customizeHelp": {
+    "message": "Chrome নিজস্ব পাতায় এক্সটেনশন শর্টকাট পরিচালনা করে।"
+  },
+  "set_openShortcuts": {
+    "message": "শর্টকাট সেটিংস খুলুন"
+  },
+  "set_data": {
+    "message": "আপনার ডেটা"
+  },
+  "set_backup": {
+    "message": "ব্যাকআপ"
+  },
+  "set_backupHelp": {
+    "message": "সব সংরক্ষিত মিটিং ও রোস্টার JSON ফাইলে ডাউনলোড করুন।"
+  },
+  "set_exportBackup": {
+    "message": "ব্যাকআপ এক্সপোর্ট"
+  },
+  "set_restore": {
+    "message": "পুনরুদ্ধার"
+  },
+  "set_restoreHelp": {
+    "message": "ব্যাকআপ ফাইল থেকে মিটিং ও রোস্টার ইমপোর্ট করুন।"
+  },
+  "set_importBackup": {
+    "message": "ব্যাকআপ ইমপোর্ট"
+  },
+  "set_deleteAll": {
+    "message": "সবকিছু মুছুন"
+  },
+  "set_deleteAllHelp": {
+    "message": "এই ব্রাউজার থেকে সব সংরক্ষিত মিটিং স্থায়ীভাবে মুছে ফেলুন।"
+  },
+  "set_deleteAllBtn": {
+    "message": "সব মিটিং মুছুন"
+  },
+  "wipe_title": {
+    "message": "সব মিটিং মুছবেন?"
+  },
+  "wipe_body": {
+    "message": "সব সংরক্ষিত উপস্থিতির তালিকা স্থায়ীভাবে মুছে যাবে। এটি ফেরানো যাবে না।"
+  },
+  "privacy_sub": {
+    "message": "সংক্ষেপে: আপনার উপস্থিতির ডেটা কখনও এই ডিভাইসের বাইরে যায় না।"
+  },
+  "privacy_collectedTitle": {
+    "message": "কী সংগ্রহ করা হয়"
+  },
+  "privacy_c1": {
+    "message": "আপনার Google Meet কলের অংশগ্রহণকারীদের প্রদর্শিত নাম, যেমন স্ক্রিনে দেখা যায়।"
+  },
+  "privacy_c2": {
+    "message": "প্রত্যেকে কখন প্রথম ও শেষ দেখা গেছেন, কলে থাকার সময় ও আনুমানিক কথা বলার সময়।"
+  },
+  "privacy_c3": {
+    "message": "মিটিং কোড, শিরোনাম (দৃশ্যমান হলে), শুরু/শেষের সময় এবং আপনার যোগ করা ট্যাগ, নোট ও রোস্টার।"
+  },
+  "privacy_c4": {
+    "message": "চালু থাকলে, Meet-এর চ্যাট প্যানেলে দেখানো বার্তা।"
+  },
+  "privacy_storedTitle": {
+    "message": "কোথায় সংরক্ষিত হয়"
+  },
+  "privacy_stored": {
+    "message": "শুধু এই ব্রাউজারের এক্সটেনশন স্টোরেজে (chrome.storage.local)। এক্সটেনশন আনইনস্টল করলে মুছে যায়।"
+  },
+  "privacy_neverTitle": {
+    "message": "যা কখনও করা হয় না"
+  },
+  "privacy_n1": {
+    "message": "কোনো সার্ভার, অ্যাকাউন্ট, অ্যানালিটিক্স, বিজ্ঞাপন বা ট্র্যাকার নেই। এক্সটেনশন কোনো নেটওয়ার্ক অনুরোধ করে না।"
+  },
+  "privacy_n2": {
+    "message": "কোনো অডিও বা ভিডিও রেকর্ড হয় না; কথা বলার সময় Meet-এর স্ক্রিনের নির্দেশক থেকে আসে।"
+  },
+  "privacy_n3": {
+    "message": "এক্সপোর্ট (CSV, XLSX, PDF, JSON) এক্সটেনশনের ভেতরের কোড দিয়ে লোকালি তৈরি হয়।"
+  },
+  "privacy_permTitle": {
+    "message": "অনুমতি"
+  },
+  "privacy_p1": {
+    "message": "storage: আপনার সেটিংস, রোস্টার ও উপস্থিতির ইতিহাস লোকালি সংরক্ষণ।"
+  },
+  "privacy_p2": {
+    "message": "meet.google.com কনটেন্ট স্ক্রিপ্ট: শুধু Meet পাতায় অংশগ্রহণকারী তালিকা ও চ্যাট পড়া।"
+  },
+  "privacy_p3": {
+    "message": "কীবোর্ড শর্টকাট chrome.commands ব্যবহার করে, যার জন্য অনুমতি লাগে না।"
+  },
+  "privacy_policy": {
+    "message": "উপস্থিতি রেকর্ডের সময় প্রতিষ্ঠানের নীতি ও স্থানীয় আইন মেনে চলুন।"
+  }
+}

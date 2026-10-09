@@ -1,27 +1,26 @@
 {
   "manifest_version": 3,
-  "name": "Meet Attendance Tracker",
-  "version": "1.0.0",
-  "description": "Automatically track and save attendance in Google Meet. Monitor participants, record join/leave times, export to CSV, XLSX, PDF. Search, analytics, dashboard. 100% free, all local.",
+  "name": "__MSG_extName__",
+  "short_name": "__MSG_extShortName__",
+  "version": "2.1.0",
+  "description": "__MSG_extDescription__",
+  "default_locale": "en",
   "permissions": [
-    "storage",
-    "downloads",
-    "activeTab",
-    "tabs"
-  ],
-  "host_permissions": [
-    "http://localhost:5001/*"
+    "storage"
   ],
   "action": {
+    "default_title": "__MSG_extName__",
     "default_popup": "popup.html",
     "default_icon": {
       "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
       "48": "icons/icon48.png",
       "128": "icons/icon128.png"
     }
   },
   "icons": {
     "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
   },
@@ -30,9 +29,41 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://meet.google.com/*"],
-      "js": ["content.js"],
+      "matches": [
+        "https://meet.google.com/*"
+      ],
+      "js": [
+        "lib/core.js",
+        "lib/rules.js",
+        "lib/storage.js",
+        "lib/i18n.js",
+        "lib/export.js",
+        "lib/textimage.js",
+        "lib/detect.js",
+        "content/panel.js",
+        "content/content.js"
+      ],
       "run_at": "document_idle"
     }
-  ]
+  ],
+  "commands": {
+    "toggle-panel": {
+      "suggested_key": {
+        "default": "Alt+Shift+M",
+        "mac": "Alt+Shift+M"
+      },
+      "description": "__MSG_cmdTogglePanel__"
+    },
+    "save-now": {
+      "suggested_key": {
+        "default": "Alt+Shift+S",
+        "mac": "Alt+Shift+S"
+      },
+      "description": "__MSG_cmdSaveNow__"
+    }
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  },
+  "minimum_chrome_version": "110"
 }
