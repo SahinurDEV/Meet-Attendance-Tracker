@@ -8,6 +8,10 @@ on:
       tag:
         description: "Existing tag to (re)build, e.g. v2.1.1"
         required: true
+      dry_run:
+        description: "Dry run: build and upload the zips as an artifact only (no GitHub Release, no Chrome Web Store)"
+        type: boolean
+        default: true
 
 permissions:
   contents: read
@@ -22,6 +26,7 @@ jobs:
       zip: ${{ steps.pkg.outputs.zip }}
     env:
       TAG: ${{ github.event.inputs.tag || github.ref_name }}
+      DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
     steps:
       - uses: actions/checkout@v7
         with:
@@ -52,9 +57,13 @@ jobs:
         id: pkg
         run: |
           npm run package
-          zip=$(ls dist/meet-attendance-tracker-v*.zip)
+          npm run package:firefox
+          zip=$(ls dist/meet-attendance-tracker-v*.zip | grep -v -- -firefox)
+          ffzip=$(ls dist/meet-attendance-tracker-v*-firefox.zip)
           echo "zip=$zip" >> "$GITHUB_OUTPUT"
+          echo "ffzip=$ffzip" >> "$GITHUB_OUTPUT"
           sha256sum "$zip" > "$zip.sha256"
+          sha256sum "$ffzip" > "$ffzip.sha256"
 
       - uses: actions/upload-artifact@v6
         with:
@@ -62,19 +71,22 @@ jobs:
           path: dist/
 
       - name: Create or update the GitHub Release
+        if: env.DRY_RUN != 'true'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           zip="${{ steps.pkg.outputs.zip }}"
+          ffzip="${{ steps.pkg.outputs.ffzip }}"
           if gh release view "$TAG" >/dev/null 2>&1; then
-            gh release upload "$TAG" "$zip" "$zip.sha256" --clobber
+            gh release upload "$TAG" "$zip" "$zip.sha256" "$ffzip" "$ffzip.sha256" --clobber
           else
-            gh release create "$TAG" "$zip" "$zip.sha256" --title "Meet Attendance Tracker $TAG" --generate-notes --verify-tag
+            gh release create "$TAG" "$zip" "$zip.sha256" "$ffzip" "$ffzip.sha256" --title "Meet Attendance Tracker $TAG" --generate-notes --verify-tag
           fi
 
   chrome-web-store:
     name: Publish to Chrome Web Store (optional)
     needs: build
+    if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.dry_run) }}
     runs-on: ubuntu-latest
     env:
       CLIENT_ID: ${{ secrets.CWS_CLIENT_ID }}

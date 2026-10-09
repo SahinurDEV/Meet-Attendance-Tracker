@@ -48,8 +48,13 @@ jobs:
       - name: Integration tests (Playwright + unpacked extension)
         run: npm run test:integration
 
-      - name: Package extension
-        run: npm run package
+      - name: Package extension (Chrome/Edge + Firefox)
+        run: |
+          npm run package
+          npm run package:firefox
+
+      - name: Firefox add-on lint (web-ext)
+        run: npm run lint:firefox
 
       - name: Upload extension zip
         uses: actions/upload-artifact@v6
