@@ -1,6 +1,6 @@
 {
   "name": "meet-attendance-tracker",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "private": true,
   "description": "Privacy-first Google Meet attendance tracker Chrome extension (Manifest V3). All data stays on your device.",
   "license": "MIT",

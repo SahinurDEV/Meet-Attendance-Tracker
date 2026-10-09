@@ -22,7 +22,7 @@
         <a href="#roadmap">Roadmap</a>
         <a href="#install">Install</a>
         <a href="#privacy">Privacy</a>
-        <a class="btn btn-sm" href="https://github.com/SahinurDEV/Meet-Attendance-Tracker">GitHub</a>
+        <a class="btn btn-sm" href="support.html">Support</a>
       </nav>
     </div>
   </header>
@@ -31,12 +31,12 @@
     <section class="hero">
       <div class="container hero-grid">
         <div class="hero-copy">
-          <span class="pill">🔒 Free · Open source · 100% local · v2.1</span>
+          <span class="pill">🔒 Free · 100% local · No account · v2.1</span>
           <h1>Google Meet attendance that <span class="hl">takes itself</span>.</h1>
           <p class="lead">A Chrome extension that quietly records who joined your call, when they were first and last seen, how long they stayed and how much they spoke. It marks your class or team list Present, Late or Absent, charts attendance over time, and exports everything to CSV, Excel, PDF or JSON in one click.</p>
           <div class="cta">
             <a class="btn btn-primary" href="#install">Install in 1 minute</a>
-            <a class="btn" href="https://github.com/SahinurDEV/Meet-Attendance-Tracker">View source</a>
+            <a class="btn" href="support.html">Get support</a>
           </div>
           <ul class="ticks">
             <li>No account, no server</li><li>Manifest V3</li><li>Only the <code>storage</code> permission</li>
@@ -135,24 +135,25 @@
     <section id="install" class="section alt">
       <div class="container install">
         <div>
-          <h2 class="h2 left">Install (load unpacked)</h2>
+          <h2 class="h2 left">Install</h2>
           <p class="sub left">Works in Chrome, Edge, Brave and other Chromium browsers (v110+).</p>
           <ol class="install-steps">
-            <li>Download the code: <a href="https://github.com/SahinurDEV/Meet-Attendance-Tracker/archive/refs/heads/feature/full-extension.zip">ZIP</a> or <code>git clone -b feature/full-extension https://github.com/SahinurDEV/Meet-Attendance-Tracker</code>, then unzip it.</li>
-            <li>Open <code>chrome://extensions</code>.</li>
-            <li>Switch on <b>Developer mode</b> (top-right).</li>
-            <li>Click <b>Load unpacked</b> and choose the <code>extension/</code> folder.</li>
-            <li>Pin <b>Meet Attendance Tracker</b> from the puzzle-piece menu and join a call.</li>
+            <li>Add <b>Meet Attendance Tracker</b> from the Chrome Web Store (listing coming soon).</li>
+            <li>Pin it from the puzzle-piece menu in the toolbar.</li>
+            <li>Join a call on <code>meet.google.com</code>. Attendance is recorded automatically.</li>
+            <li>Click the <b>Attendance</b> button in Meet, or the toolbar icon, to see the live list and export a report.</li>
           </ol>
         </div>
         <div class="code-card">
-          <div class="code-head"><i></i><i></i><i></i><span>terminal</span></div>
-<pre><code><span class="c"># build a store-ready zip</span>
-git clone -b feature/full-extension https://github.com/SahinurDEV/Meet-Attendance-Tracker
-cd Meet-Attendance-Tracker
-npm install
-npm test          <span class="c"># unit + browser tests</span>
-npm run package   <span class="c"># → dist/meet-attendance-tracker-v2.1.0.zip</span></code></pre>
+          <div class="code-head"><i></i><i></i><i></i><span>early access</span></div>
+<pre><code><span class="c"># want to try it before the store listing?</span>
+Ask for a test build on the support page,
+then load it at chrome://extensions
+(Developer mode → Load unpacked).
+
+<span class="c"># source code</span>
+Available on request.</code></pre>
+          <p style="margin:0;padding:0 22px 20px"><a class="btn btn-sm" href="support.html">Support &amp; contact</a></p>
         </div>
       </div>
     </section>

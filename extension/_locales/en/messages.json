@@ -7,7 +7,7 @@
     "message": "Attendance"
   },
   "extDescription": {
-    "message": "Automatic Google Meet attendance: join/leave times, speaking time, rosters, analytics. Export CSV, XLSX, PDF. 100% local.",
+    "message": "Automatically takes attendance in Google Meet and lets you export a report, with all data kept on your device.",
     "description": "Shown in the Chrome Web Store and chrome://extensions"
   },
   "cmdTogglePanel": {

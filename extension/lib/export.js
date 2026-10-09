@@ -18,7 +18,7 @@
   "use strict";
 
   const APP_NAME = "Meet Attendance Tracker";
-  const APP_VERSION = "2.1.0";
+  const APP_VERSION = "2.1.1";
   const utf8 = (s) => new TextEncoder().encode(s);
 
   // ── Table model shared by all formats ──────────────────────────────
