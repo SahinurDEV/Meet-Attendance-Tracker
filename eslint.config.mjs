@@ -34,6 +34,8 @@ export default [
     rules: {
       "no-unused-vars": ["warn", { args: "none", caughtErrors: "none", varsIgnorePattern: "^_" }],
       "no-empty": ["error", { allowEmptyCatch: true }],
+      // On by default in ESLint 10; enabled here so ESLint 9 and 10 agree.
+      "no-useless-assignment": "error",
     },
   },
 ];

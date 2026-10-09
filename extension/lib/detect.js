@@ -201,11 +201,11 @@
     const byKey = new Map();
     const used = {};
     for (const [name, fn] of Object.entries(STRATEGIES)) {
-      let found = [];
+      let found;
       try {
         found = fn(doc);
-      } catch (e) {
-        found = [];
+      } catch {
+        found = []; // a broken strategy must not stop the others
       }
       used[name] = found.length;
       // The labelled fallback only runs when nothing better worked.
