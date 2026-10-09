@@ -6,7 +6,7 @@
   <a href="https://github.com/SahinurDEV/Meet-Attendance-Tracker/actions/workflows/ci.yml"><img src="https://github.com/SahinurDEV/Meet-Attendance-Tracker/actions/workflows/ci.yml/badge.svg?branch=main" alt="CI"></a>
   <a href="https://github.com/SahinurDEV/Meet-Attendance-Tracker/releases/latest"><img src="https://img.shields.io/github/v/release/SahinurDEV/Meet-Attendance-Tracker?sort=semver&color=0f766e" alt="Latest release"></a>
   <a href="LICENSE"><img src="https://img.shields.io/github/license/SahinurDEV/Meet-Attendance-Tracker?color=0f766e" alt="MIT License"></a>
-  <img src="https://img.shields.io/badge/Chrome%20Web%20Store-pending%20review-lightgrey?logo=googlechrome&logoColor=white" alt="Chrome Web Store: pending review">
+  <a href="https://chromewebstore.google.com/detail/meet-attendance-tracker/knhhplmldjejlbhpnhgcbcbnglghoblm"><img src="https://img.shields.io/chrome-web-store/v/knhhplmldjejlbhpnhgcbcbnglghoblm?logo=googlechrome&logoColor=white&label=Chrome%20Web%20Store&color=0f766e" alt="Chrome Web Store version"></a>
   <img src="https://img.shields.io/badge/Manifest-V3-4285F4?logo=googlechrome&logoColor=white" alt="Manifest V3">
   <a href="CONTRIBUTING.md"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen" alt="PRs welcome"></a>
 </p>
@@ -16,6 +16,10 @@
   A Chrome extension that records who joined your call, when, for how long and how much they spoke. It marks
   your class or team list Present, Late or Absent, and exports a report. No account, no server; nothing
   leaves your device.
+</p>
+
+<p align="center">
+  <a href="https://chromewebstore.google.com/detail/meet-attendance-tracker/knhhplmldjejlbhpnhgcbcbnglghoblm"><b>⬇️ Install from the Chrome Web Store</b></a>
 </p>
 
 <p align="center">
@@ -124,11 +128,19 @@ File names include the meeting date, e.g. `meet-attendance_abc-defg-hij_2026-10-
 
 ## Install
 
-### Chrome Web Store
+### Chrome Web Store (recommended)
 
-🕒 **Coming soon.** The listing is in review. This README and the [website](https://sahinurdev.github.io/Meet-Attendance-Tracker/) will link to it once it's live.
+**[Add Meet Attendance Tracker to Chrome →](https://chromewebstore.google.com/detail/meet-attendance-tracker/knhhplmldjejlbhpnhgcbcbnglghoblm)**
 
-### From a release zip (load unpacked)
+1. Open the [Chrome Web Store listing](https://chromewebstore.google.com/detail/meet-attendance-tracker/knhhplmldjejlbhpnhgcbcbnglghoblm) and click **Add to Chrome**.
+2. Pin *Meet Attendance Tracker* from the puzzle-piece menu.
+3. Join a call on `meet.google.com`. Attendance is recorded automatically.
+
+Updates install automatically. This also works in Brave, Opera and other Chromium browsers, and in Edge (see below).
+
+### For developers: from a release zip (load unpacked)
+
+Use this to try a build before it reaches the store, or to test your own changes.
 
 1. Download `meet-attendance-tracker-vX.Y.Z.zip` from the [**latest release**](https://github.com/SahinurDEV/Meet-Attendance-Tracker/releases/latest) and unzip it into a folder.
 2. Open `chrome://extensions` (also works in Edge, Brave and other Chromium browsers, v110+).
@@ -141,7 +153,9 @@ Your data is kept, because it lives in the browser and not in the folder.
 
 ### Microsoft Edge
 
-The same release zip works in Edge (tested with Edge 155; the full integration suite passes in Edge, see `npm run test:edge`).
+The easiest way is the [Chrome Web Store listing](https://chromewebstore.google.com/detail/meet-attendance-tracker/knhhplmldjejlbhpnhgcbcbnglghoblm): in Edge, click **Allow extensions from other stores** when prompted, then **Get** / **Add to Chrome**.
+
+The release zip also works in Edge for development (tested with Edge 155; the full integration suite passes in Edge, see `npm run test:edge`):
 
 1. Download and unzip the [latest release](https://github.com/SahinurDEV/Meet-Attendance-Tracker/releases/latest) as above.
 2. Open `edge://extensions`.
@@ -317,7 +331,7 @@ canvas and embedded as an anti-aliased image mask in the brand colour. Latin tex
 > **Planned, not built.** Anything involving a cloud service would be strictly opt-in; local-only stays the default.
 > Want to help? Look for [`good first issue`](https://github.com/SahinurDEV/Meet-Attendance-Tracker/issues?q=is%3Aopen+label%3A%22good+first+issue%22) and [`help wanted`](https://github.com/SahinurDEV/Meet-Attendance-Tracker/issues?q=is%3Aopen+label%3A%22help+wanted%22).
 
-- [ ] Chrome Web Store listing (in review)
+- [x] [Chrome Web Store listing](https://chromewebstore.google.com/detail/meet-attendance-tracker/knhhplmldjejlbhpnhgcbcbnglghoblm) (v2.1.1, published October 2026)
 - [x] Microsoft Edge (the Chrome build works as is; tested)
 - [ ] Firefox: experimental build available (`npm run package:firefox`); AMO listing next
 - [ ] Edge Add-ons store listing
@@ -350,9 +364,10 @@ for the dev setup, tests and pull request process, and follow the [Code of Condu
 
 - GitHub: [github.com/SahinurDEV](https://github.com/SahinurDEV)
 - Website: [sahinurdev.github.io/Meet-Attendance-Tracker](https://sahinurdev.github.io/Meet-Attendance-Tracker/)
+- Chrome Web Store: [Meet Attendance Tracker](https://chromewebstore.google.com/detail/meet-attendance-tracker/knhhplmldjejlbhpnhgcbcbnglghoblm)
 - Support: [support page](https://sahinurdev.github.io/Meet-Attendance-Tracker/support.html) · infosahinur@gmail.com
 
-If this extension saves you time, a ⭐ on GitHub helps others find it.
+If this extension saves you time, please [rate it on the Chrome Web Store](https://chromewebstore.google.com/detail/meet-attendance-tracker/knhhplmldjejlbhpnhgcbcbnglghoblm/reviews) or give it a ⭐ on GitHub. Both help others find it.
 
 ---
 
