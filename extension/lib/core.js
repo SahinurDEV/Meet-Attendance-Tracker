@@ -17,7 +17,7 @@
 
   // ── Names ──────────────────────────────────────────────────────────
   const SUFFIX_RE =
-    /\s*[(\[]\s*(you|host|co-host|organi[sz]er|presenter|presentation|meeting host|guest|external)\s*[)\]]\s*$/i;
+    /\s*[([]\s*(you|host|co-host|organi[sz]er|presenter|presentation|meeting host|guest|external)\s*[)\]]\s*$/i;
   const TRAILING_ROLE_RE = /\s+(meeting host|is presenting|\(presenting\))$/i;
 
   // Words / phrases that only appear in Meet UI chrome, never in real names.

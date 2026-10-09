@@ -6,7 +6,7 @@ const fs = require("node:fs");
 const os = require("node:os");
 const path = require("node:path");
 const XLSX = require("xlsx");
-const core = require("../../extension/lib/core.js");
+require("../../extension/lib/core.js"); // registers core helpers used by export.js
 const ex = require("../../extension/lib/export.js");
 const an = require("../../extension/lib/analytics.js");
 const { meeting } = require("../helpers/records.cjs");

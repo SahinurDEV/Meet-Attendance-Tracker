@@ -9,16 +9,29 @@
     "test:unit": "node --test test/unit/",
     "test:integration": "node --test --test-concurrency=1 test/integration/",
     "test:setup": "playwright install chromium",
+    "lint": "eslint .",
     "screenshots": "node scripts/screenshots.mjs",
     "icons": "node scripts/build-icons.mjs",
     "lint:manifest": "node scripts/check-manifest.mjs",
     "package": "node scripts/package.mjs"
   },
   "devDependencies": {
+    "@eslint/js": "^9.39.5",
+    "eslint": "^9.39.5",
+    "globals": "^17.13.0",
     "playwright": "^1.64.0",
     "xlsx": "^0.18.5"
   },
   "engines": {
     "node": ">=20"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SahinurDEV/Meet-Attendance-Tracker.git"
+  },
+  "homepage": "https://sahinurdev.github.io/Meet-Attendance-Tracker/",
+  "bugs": {
+    "url": "https://github.com/SahinurDEV/Meet-Attendance-Tracker/issues"
+  },
+  "author": "Sahinur (SahinurDEV) (https://github.com/SahinurDEV)"
 }

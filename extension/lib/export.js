@@ -228,6 +228,7 @@
   // ── XLSX ───────────────────────────────────────────────────────────
   const xmlEsc = (s) =>
     String(s == null ? "" : s)
+      // eslint-disable-next-line no-control-regex -- strip characters that are illegal in XML
       .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g, "")
       .replace(/&/g, "&amp;")
       .replace(/</g, "&lt;")
@@ -244,7 +245,7 @@
   const STATUS_STYLE = { present: 4, late: 5, short: 6, absent: 7 };
 
   function sheetName(name, used) {
-    let base = String(name || "Sheet").replace(/[\[\]:*?/\\]/g, " ").replace(/\s+/g, " ").trim().slice(0, 28) || "Sheet";
+    let base = String(name || "Sheet").replace(/[[\]:*?/\\]/g, " ").replace(/\s+/g, " ").trim().slice(0, 28) || "Sheet";
     let n = base;
     for (let i = 2; used.has(n.toLowerCase()); i++) n = `${base.slice(0, 26)} ${i}`;
     used.add(n.toLowerCase());

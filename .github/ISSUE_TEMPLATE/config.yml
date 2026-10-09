@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 Questions and ideas (Discussions)
+    url: https://github.com/SahinurDEV/Meet-Attendance-Tracker/discussions
+    about: Ask how something works or float an idea before opening an issue.
+  - name: 🔒 Report a security vulnerability
+    url: https://github.com/SahinurDEV/Meet-Attendance-Tracker/security/advisories/new
+    about: Please report security issues privately.
+  - name: 📖 Support page
+    url: https://sahinurdev.github.io/Meet-Attendance-Tracker/support.html
+    about: FAQ and email support.
