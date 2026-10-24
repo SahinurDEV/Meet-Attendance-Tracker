@@ -34,6 +34,12 @@
 
 ![The Attendance panel inside a Google Meet call](docs/screenshots/meet-panel.png)
 
+## Demo
+
+[![Meet Attendance Tracker demo](https://img.youtube.com/vi/eluChZhn338/hqdefault.jpg)](https://youtu.be/eluChZhn338)
+
+▶️ [Watch the Meet Attendance Tracker demo on YouTube](https://youtu.be/eluChZhn338)
+
 ## Highlights
 
 - ⏱️ **Hands-free.** Tracking starts when people appear in the call and saves automatically.
